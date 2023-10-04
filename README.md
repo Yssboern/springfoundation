@@ -32,6 +32,4 @@ Create Custom configuration for data source based on conditional properties:
 - Introduce 2 data sources(using @Component and @Profile("QA")/ @Component and @Profile("DEV"))
 - Implement test(using @ActiveProfile("DEV")) which tests your application by requesting data from DEV Data Source.
 
-# When practical task is implemented and ready for verification please upload an archive (jar, zip) with resources to the Result field and submit the results.
-
 ﻿
