@@ -1,5 +1,6 @@
 package com.learn.epam.springfoundation;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
@@ -11,19 +12,23 @@ import java.util.List;
 @Service
 public class AppService {
 
-    private final DataSource dataSource;
-    private final AppRepo appRepo;
+    private DataSource dataSource;
+    private AppRepo appRepo;
 
-    public AppService(DataSource dataSource, AppRepo appRepo) {
+    @Autowired
+    public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
-        this.appRepo = appRepo;
     }
 
+    @Autowired
+    public void setAppRepo(AppRepo appRepo) {
+        this.appRepo = appRepo;
+    }
 
     public String getDataSourceInfo() {
         try (Connection con = dataSource.getConnection()) {
             var dbData = con.getMetaData();
-            return "URL: " + dbData.getURL() + " User: " + dbData.getUserName();
+            return dbData.getDatabaseProductName() + " URL: " + dbData.getURL() + " User: " + dbData.getUserName();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
