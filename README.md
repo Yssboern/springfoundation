@@ -1,10 +1,48 @@
-# springfoundation
-Java Advanced: Backend Services; Module 1 Task
+Java Advanced: Backend Services;
+==
+Module 1 Task
+--
 
-Task 1
+```
+mvn spring-boot:run
+```
 
-What should be done
-# Spring Auto Configuration
+# endpoints:
+
+- requires login: admin/password:
+  - http://localhost:8080/actuator
+  - ```
+    curl -X GET -u admin:password http://localhost:8080/actuator
+    ```
+
+- custom actuator endpoint, no login required
+  - http://localhost:8080/actuator/custom
+  - ``` 
+    curl -X GET http://localhost:8080/api/dsi
+    ```
+
+- datasource info, no login required
+  - http://localhost:8080/api/dsi 
+  - ``` 
+    curl -X GET http://localhost:8080/api/dsi 
+    ```
+
+- Populate database:
+  - ```
+    curl -X POST -u user:password http://localhost:8080/api/populate
+    ```
+
+- Read DB records (requires login: user/password):
+  - http://localhost:8080/api/all
+  - ```
+    curl -X GET -u user:password http://localhost:8080/api/all 
+    ```
+
+
+
+
+What should be done:
+## Spring Auto Configuration
 
 Create Basic Spring application which will have Data Source Configuration provided by spring Auto-Configuration:
 
@@ -12,21 +50,30 @@ Create Basic Spring application which will have Data Source Configuration provid
 - Use https://mvnrepository.com/artifact/com.h2database/h2 as a Data Source.
 - Add test which tests your application by saving an entity to the data source.
 
-# Custom Configuration
+  ___Solution:___ ***com.learn.epam.springfoundation.DataSourceConfig***
+
+## Custom Configuration
 
 Create Custom configuration for data source based on conditional properties:
 
 - Introduce a configuration(using @Configuration) which should return a data source if an instance of provided interface doesn't exist(@ConditionalOnMissingBean).
 - Add test which tests your application by saving an entity to the data source.
 
-# Spring Actuator
+ ___Solution:___ 
+ - ***com.learn.epam.springfoundation.DataSourceConfig***
+ - ***com.learn.epam.springfoundation.AppTests***
+
+## Spring Actuator
 
 - Enable actuator by adding https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator dependency.
 - Expose Default Spring Actuator by configuring SecurityWebFilterChain bean.
 - Add a new custom actuator endpoint(using @Component and @Endpoint(id = ...)) and return a custom response.
-- Spring Profiles (optional, should be done when previous items are complete)
 
-# Separate Data Source Configurations Using Profiles:
+ ___Solution:___ ***com.learn.epam.springfoundation.CustomEndpoint***
+
+## Spring Profiles (optional, should be done when previous items are complete)
+
+ Separate Data Source Configurations Using Profiles:
 
 - There should be 2 different Data Sources - one for QA and one for DEV.
 - Introduce 2 data sources(using @Component and @Profile("QA")/ @Component and @Profile("DEV"))
