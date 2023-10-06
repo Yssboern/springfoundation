@@ -1,15 +1,18 @@
 package com.learn.epam.springfoundation;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernatePropertiesCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
 import javax.sql.DataSource;
 
 @Configuration
-public class DataSourceConfig {
+@Profile("DEV")
+public class DataSourceConfigDev {
 
     @Bean
     public DataSource dataSourceH2() {
@@ -32,6 +35,13 @@ public class DataSourceConfig {
                 .setScriptEncoding("UTF-8")
                 .ignoreFailedDrops(true)
                 .build();
+    }
+
+    @Bean
+    public HibernatePropertiesCustomizer hibernatePropertiesCustomizer() {
+        return hibernateProperties -> hibernateProperties.put(
+                "hibernate.dialect", "org.hibernate.dialect.H2Dialect"
+        );
     }
 
 }

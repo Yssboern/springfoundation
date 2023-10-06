@@ -6,6 +6,9 @@ Module 1 Task
 ```
 mvn spring-boot:run
 ```
+```
+java -jar .\target\springfoundation-1.0-jar-with-dependencies.jar
+```
 
 # endpoints:
 
@@ -50,7 +53,7 @@ Create Basic Spring application which will have Data Source Configuration provid
 - Use https://mvnrepository.com/artifact/com.h2database/h2 as a Data Source.
 - Add test which tests your application by saving an entity to the data source.
 
-  ___Solution:___ ***com.learn.epam.springfoundation.DataSourceConfig***
+  ___Solution:___ ***com.learn.epam.springfoundation.DataSourceConfigDev***
 
 ## Custom Configuration
 
@@ -60,7 +63,7 @@ Create Custom configuration for data source based on conditional properties:
 - Add test which tests your application by saving an entity to the data source.
 
  ___Solution:___ 
- - ***com.learn.epam.springfoundation.DataSourceConfig***
+ - ***com.learn.epam.springfoundation.DataSourceConfigDev***
  - ***com.learn.epam.springfoundation.AppTests***
 
 ## Spring Actuator
