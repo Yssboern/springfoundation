@@ -1,5 +1,7 @@
-package com.learn.epam.springfoundation;
+package com.learn.epam.springfoundation.controller;
 
+import com.learn.epam.springfoundation.entity.AppEntity;
+import com.learn.epam.springfoundation.service.AppService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

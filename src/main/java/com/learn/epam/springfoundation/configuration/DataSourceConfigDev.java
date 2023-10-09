@@ -1,4 +1,4 @@
-package com.learn.epam.springfoundation;
+package com.learn.epam.springfoundation.configuration;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernatePropertiesCustomizer;

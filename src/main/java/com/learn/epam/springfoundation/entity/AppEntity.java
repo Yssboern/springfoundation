@@ -1,4 +1,4 @@
-package com.learn.epam.springfoundation;
+package com.learn.epam.springfoundation.entity;
 
 import jakarta.persistence.*;
 

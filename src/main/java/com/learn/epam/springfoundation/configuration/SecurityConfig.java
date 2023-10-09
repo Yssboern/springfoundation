@@ -1,4 +1,4 @@
-package com.learn.epam.springfoundation;
+package com.learn.epam.springfoundation.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

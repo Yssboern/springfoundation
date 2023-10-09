@@ -1,5 +1,7 @@
-package com.learn.epam.springfoundation;
+package com.learn.epam.springfoundation.service;
 
+import com.learn.epam.springfoundation.entity.AppEntity;
+import com.learn.epam.springfoundation.repository.AppRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

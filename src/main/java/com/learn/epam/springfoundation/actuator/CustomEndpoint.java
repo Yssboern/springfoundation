@@ -1,4 +1,4 @@
-package com.learn.epam.springfoundation;
+package com.learn.epam.springfoundation.actuator;
 
 import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
 import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;

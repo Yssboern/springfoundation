@@ -1,4 +1,4 @@
-package com.learn.epam.springfoundation;
+package com.learn.epam.springfoundation.configuration;
 
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Qualifier;

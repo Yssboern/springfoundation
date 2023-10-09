@@ -85,7 +85,7 @@
 
                 <configuration>
                     <descriptorRefs>
-                        <descriptorRef>fat</descriptorRef>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
                     <archive>
                         <manifest>
