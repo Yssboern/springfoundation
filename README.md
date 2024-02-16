@@ -53,7 +53,7 @@ Create Basic Spring application which will have Data Source Configuration provid
 - Use https://mvnrepository.com/artifact/com.h2database/h2 as a Data Source.
 - Add test which tests your application by saving an entity to the data source.
 
-  ___Solution:___ ***com.learn.epam.springfoundation.configuration.DataSourceConfigDev***
+  ___Solution:___ ***DataSourceConfigDev***
 
 ## Custom Configuration
 
@@ -63,8 +63,8 @@ Create Custom configuration for data source based on conditional properties:
 - Add test which tests your application by saving an entity to the data source.
 
  ___Solution:___ 
- - ***com.learn.epam.springfoundation.configuration.DataSourceConfigDev***
- - ***com.learn.epam.springfoundation.AppRepoTests***
+ - ***DataSourceConfigDev***
+ - ***AppRepoTests***
 
 ## Spring Actuator
 
@@ -72,7 +72,7 @@ Create Custom configuration for data source based on conditional properties:
 - Expose Default Spring Actuator by configuring SecurityWebFilterChain bean.
 - Add a new custom actuator endpoint(using @Component and @Endpoint(id = ...)) and return a custom response.
 
- ___Solution:___ ***com.learn.epam.springfoundation.actuator.CustomEndpoint***
+ ___Solution:___ ***CustomEndpoint***
 
 ## Spring Profiles (optional, should be done when previous items are complete)
 
