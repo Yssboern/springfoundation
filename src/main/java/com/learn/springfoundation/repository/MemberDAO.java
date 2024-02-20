@@ -26,7 +26,7 @@ public class MemberDAO {
         return members;
     }
 
-    private MemberDTO toDto(MemberEntity m) {
+    private MemberDTO toDto(Member m) {
         Long rec = null;
         if (m.getRecommendedby() != null) {
             rec = m.getRecommendedby().getMemid();
@@ -39,7 +39,7 @@ public class MemberDAO {
         views.forEach(this::showMember);
     }
 
-    private void showMember(MemberEntity member) {
+    private void showMember(Member member) {
         System.out.printf("%d %s %s", member.getMemid(), member.getFirstname(), member.getSurname());
         System.out.println();
     }

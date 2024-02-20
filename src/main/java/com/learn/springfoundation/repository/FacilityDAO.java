@@ -17,9 +17,10 @@ public class FacilityDAO {
         this.facilitiesRepo = facilitiesRepo;
     }
 
-    public static FacilityDTO toDTO(FacilityEntity entity) {
+    public static FacilityDTO toDTO(Facility entity) {
+
         List<Long> trainerIds = entity.getTrainers().stream()
-                .map(TrainerEntity::getId)
+                .map(Trainer::getId)
                 .collect(Collectors.toList());
 
         return new FacilityDTO(
@@ -35,16 +36,16 @@ public class FacilityDAO {
 
     List<FacilityDTO> getAll() {
         var ff = facilitiesRepo.findAll();
-        List<FacilityDTO> facilities = new ArrayList<>();
-        ff.forEach(facilityEntity -> facilities.add(toDTO(facilityEntity)));
-        return facilities;
+        List<FacilityDTO> dtos = new ArrayList<>();
+        ff.forEach(entity -> dtos.add(toDTO(entity)));
+        return dtos;
     }
 
     public FacilityDTO getById(Long id) {
-        Optional<FacilityEntity> optionalFacility = facilitiesRepo.findById(id);
+        Optional<Facility> optionalFacility = facilitiesRepo.findById(id);
         if (optionalFacility.isPresent()) {
-            FacilityEntity facilityEntity = optionalFacility.get();
-            return toDTO(facilityEntity);
+            Facility facility = optionalFacility.get();
+            return toDTO(facility);
         } else {
             throw new EntityNotFoundException("Facility with id " + id + " not found");
         }

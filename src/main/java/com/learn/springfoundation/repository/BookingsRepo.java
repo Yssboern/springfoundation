@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @Transactional
-public interface BookingsRepo extends CrudRepository<BookingEntity, Long> {
+public interface BookingsRepo extends CrudRepository<Booking, Long> {
 }

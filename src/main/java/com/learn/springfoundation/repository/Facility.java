@@ -7,7 +7,7 @@ import java.util.List;
 //facid;name;membercost;guestcost;initialoutlay;monthlymaintenance
 @Entity
 @Table(schema = "tgn", name = "facilities")
-public class FacilityEntity {
+public class Facility {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,9 +20,9 @@ public class FacilityEntity {
     private Integer monthlymaintenance;
 
     @ManyToMany(mappedBy = "facilities")
-    private List<TrainerEntity> trainers;
+    private List<Trainer> trainers;
 
-    public FacilityEntity(String[] columns) {
+    public Facility(String[] columns) {
         this.facid = Long.parseLong(columns[0]) + 1;
         this.name = columns[1];
         this.membercost = Float.valueOf(columns[2]);
@@ -31,7 +31,7 @@ public class FacilityEntity {
         this.monthlymaintenance = Integer.valueOf(columns[5]);
     }
 
-    public FacilityEntity() {
+    public Facility() {
 
     }
 
@@ -84,11 +84,11 @@ public class FacilityEntity {
         this.monthlymaintenance = monthlymaintenance;
     }
 
-    public List<TrainerEntity> getTrainers() {
+    public List<Trainer> getTrainers() {
         return trainers;
     }
 
-    public void setTrainers(List<TrainerEntity> trainers) {
+    public void setTrainers(List<Trainer> trainers) {
         this.trainers = trainers;
     }
 

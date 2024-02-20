@@ -1,8 +1,8 @@
 package com.learn.springfoundation.service;
 
-import com.learn.springfoundation.repository.BookingEntity;
-import com.learn.springfoundation.repository.FacilityEntity;
-import com.learn.springfoundation.repository.MemberEntity;
+import com.learn.springfoundation.repository.Booking;
+import com.learn.springfoundation.repository.Facility;
+import com.learn.springfoundation.repository.Member;
 import com.learn.springfoundation.repository.BookingsRepo;
 import com.learn.springfoundation.repository.FacilitiesRepo;
 import com.learn.springfoundation.repository.MembersRepo;
@@ -62,7 +62,7 @@ public class PopulateDBService {
         membersRepo.findAll().forEach(System.out::println);
     }
 
-    private MemberEntity newMember(String[] columns) {
+    private Member newMember(String[] columns) {
 
         var memid = columns[0].equals("") ? null : Long.parseLong(columns[0]) + 1;
         var surname = columns[1];
@@ -71,12 +71,12 @@ public class PopulateDBService {
         var zipcode = columns[4];
         var telephone = columns[5];
 
-        MemberEntity recommendedby = null;
+        Member recommendedby = null;
         if (!columns[6].isBlank()) {
             recommendedby = membersRepo.findById(Long.valueOf(columns[6])).orElseGet(() -> null);
         }
         var joindate = LocalDateTime.parse(columns[7], formatter);
-        return new MemberEntity(memid, surname, firstname, address, zipcode, telephone, recommendedby, joindate);
+        return new Member(memid, surname, firstname, address, zipcode, telephone, recommendedby, joindate);
     }
 
     private void populateFacilities() throws IOException {
@@ -84,7 +84,7 @@ public class PopulateDBService {
         Files.readAllLines(path)
                 .stream()
                 .skip(1) //skip header
-                .map(line -> new FacilityEntity(line.split(";")))
+                .map(line -> new Facility(line.split(";")))
                 .forEach(facilitiesRepo::save);
         logger.info("Facilities loaded to DB");
     }
@@ -101,7 +101,7 @@ public class PopulateDBService {
         logger.info("Bookings loaded to DB");
     }
 
-    private BookingEntity newBooking(String[] params) {
+    private Booking newBooking(String[] params) {
 
         var bookid = Long.valueOf(params[0]);
         var facid = facilitiesRepo.findById(Long.parseLong(params[1]) + 1).get();
@@ -109,6 +109,6 @@ public class PopulateDBService {
         var starttime = LocalDateTime.parse(params[3], formatter);
         var slots = Integer.valueOf(params[4]);
 
-        return new BookingEntity(bookid, facid, memid, starttime, slots);
+        return new Booking(bookid, facid, memid, starttime, slots);
     }
 }

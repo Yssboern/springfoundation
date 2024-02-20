@@ -1,15 +1,14 @@
 package com.learn.springfoundation.repository;
 
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
 @Transactional
-public interface TrainerRepo extends CrudRepository<TrainerEntity, Long> {
+public interface TrainerRepo extends CrudRepository<Trainer, Long> {
 
-   // @EntityGraph(attributePaths = {"facilities"})
-//    List<TrainerEntity> findAll();
+    Page<Trainer> findAll(Pageable pageable);
 }

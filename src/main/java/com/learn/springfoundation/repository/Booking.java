@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class BookingEntity {
+public class Booking {
 
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     @Id
@@ -22,13 +22,13 @@ public class BookingEntity {
     @Column(name = "bookid", nullable = false)
     private Long bookid;
     @ManyToOne
-    private FacilityEntity facid;
+    private Facility facid;
     @ManyToOne
-    private MemberEntity memid;
+    private Member memid;
     private LocalDateTime starttime;
     private Integer slots;
 
-    public BookingEntity(Long bookid, FacilityEntity facid, MemberEntity memid, LocalDateTime starttime, Integer slots) {
+    public Booking(Long bookid, Facility facid, Member memid, LocalDateTime starttime, Integer slots) {
         this.bookid = bookid;
         this.facid = facid;
         this.memid = memid;

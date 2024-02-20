@@ -14,20 +14,31 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class TrainerEntity {
+//@NamedEntityGraph(name = "TrainerEntity.facilities",  attributeNodes = @NamedAttributeNode("facilities"))
+public class Trainer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @Column(name = "ID", nullable = false)
     private Long id;
     private String surname;
     private String firstname;
 
+    @ManyToMany
+//    @Fetch(FetchMode.SUBSELECT)
+    private List<Training> specialisations;
+
+    @OneToMany(mappedBy = "trainer")
+//    @Fetch(FetchMode.SUBSELECT)
+    private List<Trophy> trophies = new java.util.ArrayList<>();
+
+    //    @ManyToMany(fetch = FetchType.EAGER)
     @ManyToMany
     @JoinTable(
             name = "T_F",
             joinColumns = @JoinColumn(name = "trainer_id"),
             inverseJoinColumns = @JoinColumn(name = "facility_id")
     )
-    private List<FacilityEntity> facilities;
+//    @Fetch(FetchMode.SUBSELECT)
+    private List<Facility> facilities;
 
 }

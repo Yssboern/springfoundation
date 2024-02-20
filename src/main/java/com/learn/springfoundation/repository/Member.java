@@ -9,7 +9,7 @@ import static jakarta.persistence.FetchType.LAZY;
 //memid;surname;firstname;address;zipcode;telephone;recommendedby;joindate
 @Entity
 @Table(schema = "tgn", name = "members")
-public class MemberEntity {
+public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "memid", nullable = false)
@@ -22,9 +22,9 @@ public class MemberEntity {
     private String telephone;
     private LocalDateTime joindate;
     @ManyToOne(fetch = LAZY)
-    private MemberEntity recommendedby;
+    private Member recommendedby;
 
-    public MemberEntity(Long memid, String surname, String firstname, String address, String zipcode, String telephone, MemberEntity recommendedby, LocalDateTime joindate) {
+    public Member(Long memid, String surname, String firstname, String address, String zipcode, String telephone, Member recommendedby, LocalDateTime joindate) {
         this.memid = memid;
         this.surname = surname;
         this.firstname = firstname;
@@ -35,7 +35,7 @@ public class MemberEntity {
         this.joindate = joindate;
     }
 
-    public MemberEntity() {
+    public Member() {
 
     }
 
@@ -87,11 +87,11 @@ public class MemberEntity {
         this.telephone = telephone;
     }
 
-    public MemberEntity getRecommendedby() {
+    public Member getRecommendedby() {
         return recommendedby;
     }
 
-    public void setRecommendedby(MemberEntity recommendedby) {
+    public void setRecommendedby(Member recommendedby) {
         this.recommendedby = recommendedby;
     }
 

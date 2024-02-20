@@ -24,16 +24,16 @@ public class BookingDAO {
     }
 
     public BookingDTO getById(Long id) {
-        Optional<BookingEntity> optionalBooking = bookingsRepo.findById(id);
+        Optional<Booking> optionalBooking = bookingsRepo.findById(id);
         if (optionalBooking.isPresent()) {
-            BookingEntity bookingEntity = optionalBooking.get();
-            return toDTO(bookingEntity);
+            Booking booking = optionalBooking.get();
+            return toDTO(booking);
         } else {
             throw new EntityNotFoundException("Booking with id " + id + " not found");
         }
     }
 
-    private BookingDTO toDTO(BookingEntity entity) {
+    private BookingDTO toDTO(Booking entity) {
         return new BookingDTO(
                 entity.getBookid(),
                 entity.getFacid().getFacid(), // Assuming facid is Long in FacilityEntity
