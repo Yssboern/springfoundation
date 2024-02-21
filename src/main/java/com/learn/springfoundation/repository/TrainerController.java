@@ -19,9 +19,9 @@ public class TrainerController {
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/api/trainers")
     public Page<TrainerDTO> getTrainers(
-            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "5") int size) {
-        return trainerDAO.getPaginatedTrainers(PageRequest.of(page, size));
+        return trainerDAO.getPaginatedTrainers(PageRequest.of(page-1, size));
     }
 
 }
