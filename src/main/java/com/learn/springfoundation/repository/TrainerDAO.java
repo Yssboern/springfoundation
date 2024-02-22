@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,14 +23,33 @@ public class TrainerDAO {
 
     public TrainerDTO toDTO(Trainer entity) {
 
-        log.info("E->DTO " + entity.getFirstname() + " " + entity.getSurname() + " START");
-        log.info("E->DTO " + entity.getFirstname() + " " + entity.getSurname() + " facilities");
-        List<Long> facilityIds = entity.getFacilities().stream().map(Facility::getFacid).toList();
-        log.info("E->DTO " + entity.getFirstname() + " " + entity.getSurname() + " skills");
-        List<Long> skills = entity.getSpecialisations().stream().map(Training::getId).toList();
-        log.info("E->DTO " + entity.getFirstname() + " " + entity.getSurname() + " trophies");
-        List<Long> trophies = entity.getTrophies().stream().map(Trophy::getId).toList();
-        log.info("E->DTO " + entity.getFirstname() + " " + entity.getSurname() + " END");
+//        log.info("E->DTO " + entity.getFirstname() + " " + entity.getSurname() + " START");
+//        log.info("E->DTO " + entity.getFirstname() + " " + entity.getSurname() + " facilities");
+
+        List<Long> facilityIds;
+        if (entity.getFacilities() == null) {
+            facilityIds = entity.getFacilities().stream().map(Facility::getFacid).toList();
+        } else {
+            facilityIds = Collections.emptyList();
+        }
+
+        List<Long> skills;
+        if (entity.getSpecialisations() == null) {
+            skills = entity.getSpecialisations().stream().map(Training::getId).toList();
+        } else {
+            skills = Collections.emptyList();
+        }
+
+        List<Long> trophies;
+        if (entity.getSpecialisations() == null) {
+            trophies = entity.getTrophies().stream().map(Trophy::getId).toList();
+        } else {
+            trophies = Collections.emptyList();
+        }
+
+//        log.info("E->DTO " + entity.getFirstname() + " " + entity.getSurname() + " skills");
+//        log.info("E->DTO " + entity.getFirstname() + " " + entity.getSurname() + " trophies");
+//        log.info("E->DTO " + entity.getFirstname() + " " + entity.getSurname() + " END");
         return new TrainerDTO(
                 entity.getId(),
                 entity.getSurname(),
@@ -68,8 +88,20 @@ public class TrainerDAO {
     }
 
     public Page<TrainerDTO> getPaginatedTrainers(PageRequest of) {
-        var t = trainerRepo.findAll(of);
-        var dtos = t.map(this::toDTO);
-        return dtos;
+        return trainerRepo.findAll(of)
+                .map(this::toDTO);
     }
+
+    public TrainerDTO createNewTrainer(NewTrainer trainer) {
+        var newEntity = new Trainer();
+        newEntity.setFirstname(trainer.getFirstName());
+        newEntity.setSurname(trainer.getLastName());
+        newEntity.setSpecialisations(Collections.emptyList());
+        newEntity.setFacilities(Collections.emptyList());
+        newEntity.setTrophies(Collections.emptyList());
+        var e = trainerRepo.save(newEntity);
+        log.info("New trainer created: " + e.getFirstname() + " " + e.getSurname());
+        return toDTO(e);
+    }
+
 }
