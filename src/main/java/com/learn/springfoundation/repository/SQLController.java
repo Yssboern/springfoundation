@@ -56,11 +56,6 @@ public class SQLController {
         return trainerDAO.getAll();
     }
 
-    @GetMapping("/fast/trainers")
-    List<TrainerDTO> getFastTrainers() {
-        return trainerDAO.getAllGraph();
-    }
-
     @GetMapping("trainer/{id}")
     TrainerDTO getTrainer(@PathVariable Long id) {
         return trainerDAO.getById(id);

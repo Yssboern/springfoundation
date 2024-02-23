@@ -2,6 +2,8 @@ package com.learn.springfoundation.repository;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -17,6 +19,11 @@ public class MemberDAO {
     public MemberDAO(MembersViewRepo membersViewRepo, MembersRepo membersRepo) {
         this.membersViewRepo = membersViewRepo;
         this.membersRepo = membersRepo;
+    }
+
+    public Page<MemberDTO> getAllPaginated(PageRequest of) {
+        return membersRepo.findAll(of)
+                .map(this::toDto);
     }
 
     public List<MemberDTO> getMembers() {

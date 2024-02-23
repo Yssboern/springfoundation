@@ -23,9 +23,6 @@ public class TrainerDAO {
 
     public TrainerDTO toDTO(Trainer entity) {
 
-//        log.info("E->DTO " + entity.getFirstname() + " " + entity.getSurname() + " START");
-//        log.info("E->DTO " + entity.getFirstname() + " " + entity.getSurname() + " facilities");
-
         List<Long> facilityIds;
         if (entity.getFacilities() == null) {
             facilityIds = entity.getFacilities().stream().map(Facility::getFacid).toList();
@@ -47,9 +44,6 @@ public class TrainerDAO {
             trophies = Collections.emptyList();
         }
 
-//        log.info("E->DTO " + entity.getFirstname() + " " + entity.getSurname() + " skills");
-//        log.info("E->DTO " + entity.getFirstname() + " " + entity.getSurname() + " trophies");
-//        log.info("E->DTO " + entity.getFirstname() + " " + entity.getSurname() + " END");
         return new TrainerDTO(
                 entity.getId(),
                 entity.getSurname(),
@@ -67,14 +61,6 @@ public class TrainerDAO {
         entities.forEach(facilityEntity -> dtos.add(toDTO(facilityEntity)));
         log.info("Fetching all Trainers: STOP");
         return dtos;
-    }
-
-    List<TrainerDTO> getAllGraph() {
-//        return trainerRepo.findAll()
-//                .stream()
-//                .map(this::toDTO)
-//                .toList();
-        return getAll();
     }
 
     public TrainerDTO getById(Long id) {

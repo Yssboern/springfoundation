@@ -1,6 +1,8 @@
 package com.learn.springfoundation.repository;
 
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -11,10 +13,10 @@ import java.util.stream.Collectors;
 @Component
 public class FacilityDAO {
 
-    private final FacilitiesRepo facilitiesRepo;
+    private final FacilitiesRepo repo;
 
-    public FacilityDAO(FacilitiesRepo facilitiesRepo) {
-        this.facilitiesRepo = facilitiesRepo;
+    public FacilityDAO(FacilitiesRepo repo) {
+        this.repo = repo;
     }
 
     public static FacilityDTO toDTO(Facility entity) {
@@ -34,15 +36,20 @@ public class FacilityDAO {
         );
     }
 
+    public Page<FacilityDTO> getAllPaginated(PageRequest of) {
+        return repo.findAll(of)
+                .map(FacilityDAO::toDTO);
+    }
+
     List<FacilityDTO> getAll() {
-        var ff = facilitiesRepo.findAll();
+        var ff = repo.findAll();
         List<FacilityDTO> dtos = new ArrayList<>();
         ff.forEach(entity -> dtos.add(toDTO(entity)));
         return dtos;
     }
 
     public FacilityDTO getById(Long id) {
-        Optional<Facility> optionalFacility = facilitiesRepo.findById(id);
+        Optional<Facility> optionalFacility = repo.findById(id);
         if (optionalFacility.isPresent()) {
             Facility facility = optionalFacility.get();
             return toDTO(facility);
