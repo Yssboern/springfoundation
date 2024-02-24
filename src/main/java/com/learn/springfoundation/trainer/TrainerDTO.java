@@ -1,12 +1,16 @@
-package com.learn.springfoundation.repository;
+package com.learn.springfoundation.trainer;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class TrainerDTO {
     private Long id;
     private String surname;
@@ -14,16 +18,6 @@ public class TrainerDTO {
     private List<Long> facilityIds;
     private List<Long> specialisations;
     private List<Long> trophies;
-
-    // Constructors, getters, and setters
-    public TrainerDTO(Long id, String surname, String firstname, List<Long> facilityIds, List<Long> specialisations, List<Long> trophies) {
-        this.id = id;
-        this.surname = surname;
-        this.firstname = firstname;
-        this.facilityIds = facilityIds;
-        this.specialisations = specialisations;
-        this.trophies = trophies;
-    }
 
     public TrainerDTO(Long id, String surname, String firstname) {
         this.id = id;

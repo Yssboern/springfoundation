@@ -1,10 +1,15 @@
-package com.learn.springfoundation.repository;
+package com.learn.springfoundation.trainer;
 
+import com.learn.springfoundation.repository.Facility;
+import com.learn.springfoundation.repository.Training;
+import com.learn.springfoundation.repository.Trophy;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.util.List;
 
@@ -24,21 +29,23 @@ public class Trainer {
     private String firstname;
 
     @ManyToMany
-//    @Fetch(FetchMode.SUBSELECT)
+    @JoinTable(name = "TRAINER_SKILLS",
+            joinColumns = @JoinColumn(name = "TRAINER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "TRAINING_ID"))
+    @Fetch(FetchMode.SUBSELECT)
     private List<Training> specialisations;
 
     @OneToMany(mappedBy = "trainer")
-//    @Fetch(FetchMode.SUBSELECT)
+    @Fetch(FetchMode.SUBSELECT)
     private List<Trophy> trophies = new java.util.ArrayList<>();
 
-    //    @ManyToMany(fetch = FetchType.EAGER)
     @ManyToMany
     @JoinTable(
             name = "T_F",
-            joinColumns = @JoinColumn(name = "trainer_id"),
+            joinColumns = @JoinColumn(name = "TRAINER_ID"),
             inverseJoinColumns = @JoinColumn(name = "facility_id")
     )
-//    @Fetch(FetchMode.SUBSELECT)
+    @Fetch(FetchMode.SUBSELECT)
     private List<Facility> facilities;
 
 }

@@ -1,6 +1,9 @@
 package com.learn.springfoundation.repository;
 
+import com.learn.springfoundation.trainer.Trainer;
+import com.learn.springfoundation.trainer.TrainerDTO;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,52 +16,17 @@ import java.util.Optional;
 
 @Component
 @Slf4j
+@AllArgsConstructor
 public class TrainerDAO {
 
     private final TrainerRepo trainerRepo;
-
-    public TrainerDAO(TrainerRepo trainerRepo) {
-        this.trainerRepo = trainerRepo;
-    }
-
-    public TrainerDTO toDTO(Trainer entity) {
-
-        List<Long> facilityIds;
-        if (entity.getFacilities() == null) {
-            facilityIds = entity.getFacilities().stream().map(Facility::getFacid).toList();
-        } else {
-            facilityIds = Collections.emptyList();
-        }
-
-        List<Long> skills;
-        if (entity.getSpecialisations() == null) {
-            skills = entity.getSpecialisations().stream().map(Training::getId).toList();
-        } else {
-            skills = Collections.emptyList();
-        }
-
-        List<Long> trophies;
-        if (entity.getSpecialisations() == null) {
-            trophies = entity.getTrophies().stream().map(Trophy::getId).toList();
-        } else {
-            trophies = Collections.emptyList();
-        }
-
-        return new TrainerDTO(
-                entity.getId(),
-                entity.getSurname(),
-                entity.getFirstname(),
-                facilityIds,
-                skills,
-                trophies
-        );
-    }
+    private final TrainerConverter converter;
 
     List<TrainerDTO> getAll() {
         log.info("Fetching all Trainers: START");
         var entities = trainerRepo.findAll();
         List<TrainerDTO> dtos = new ArrayList<>();
-        entities.forEach(facilityEntity -> dtos.add(toDTO(facilityEntity)));
+        entities.forEach(facilityEntity -> dtos.add(converter.toDTO(facilityEntity)));
         log.info("Fetching all Trainers: STOP");
         return dtos;
     }
@@ -67,7 +35,7 @@ public class TrainerDAO {
         Optional<Trainer> optionalTrainer = trainerRepo.findById(id);
         if (optionalTrainer.isPresent()) {
             Trainer trainer = optionalTrainer.get();
-            return toDTO(trainer);
+            return converter.toDTO(trainer);
         } else {
             throw new EntityNotFoundException("Trainer with id " + id + " not found");
         }
@@ -75,10 +43,10 @@ public class TrainerDAO {
 
     public Page<TrainerDTO> getPaginatedTrainers(PageRequest of) {
         return trainerRepo.findAll(of)
-                .map(this::toDTO);
+                .map(converter::toDTO);
     }
 
-    public TrainerDTO createNewTrainer(NewTrainer trainer) {
+    public TrainerDTO save(NewTrainer trainer) {
         var newEntity = new Trainer();
         newEntity.setFirstname(trainer.getFirstName());
         newEntity.setSurname(trainer.getLastName());
@@ -87,7 +55,14 @@ public class TrainerDAO {
         newEntity.setTrophies(Collections.emptyList());
         var e = trainerRepo.save(newEntity);
         log.info("New trainer created: " + e.getFirstname() + " " + e.getSurname());
-        return toDTO(e);
+        return converter.toDTO(e);
+    }
+
+    public TrainerDTO update(TrainerDTO trainer) {
+        var entity = converter.toEntity(trainer);
+        var e = trainerRepo.save(entity);
+        log.info("New trainer created: " + e.getFirstname() + " " + e.getSurname());
+        return converter.toDTO(e);
     }
 
 }

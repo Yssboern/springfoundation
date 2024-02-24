@@ -1,5 +1,6 @@
 package com.learn.springfoundation.repository;
 
+import com.learn.springfoundation.trainer.Trainer;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

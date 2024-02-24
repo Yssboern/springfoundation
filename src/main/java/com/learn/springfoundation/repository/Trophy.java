@@ -1,5 +1,6 @@
 package com.learn.springfoundation.repository;
 
+import com.learn.springfoundation.trainer.Trainer;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,5 +29,9 @@ public class Trophy {
 
     @ManyToOne
     private Training discipline;
+
+    public Trophy(Long id) {
+        this.id = id;
+    }
 
 }

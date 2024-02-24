@@ -1,5 +1,6 @@
 package com.learn.springfoundation.repository;
 
+import com.learn.springfoundation.trainer.TrainerDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +19,6 @@ public class SQLController {
     private final FacilityDAO facilityDAO;
     private final TrainerDAO trainerDAO;
     private final BookingDAO bookingDAO;
-
 
     @GetMapping("/one")
     String get1() {
@@ -51,11 +51,6 @@ public class SQLController {
         return facilityDAO.getById(id);
     }
 
-    @GetMapping("/trainers")
-    List<TrainerDTO> getTrainers() {
-        return trainerDAO.getAll();
-    }
-
     @GetMapping("trainer/{id}")
     TrainerDTO getTrainer(@PathVariable Long id) {
         return trainerDAO.getById(id);
@@ -70,5 +65,11 @@ public class SQLController {
     BookingDTO getBooking(@PathVariable Long id) {
         return bookingDAO.getById(id);
     }
+
+
+//    @GetMapping("/trainers")
+//    List<TrainerDTO> getTrainers() {
+//        return trainerDAO.getAll();
+//    }
 
 }

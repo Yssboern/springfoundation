@@ -1,6 +1,7 @@
 package com.learn.springfoundation.repository;
 
 
+import com.learn.springfoundation.trainer.Trainer;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,9 +27,12 @@ public class Training {
 
     @ManyToMany
     @JoinTable(name = "TRAINER_SKILLS",
-            joinColumns = @JoinColumn(name = "TRAINER_ID"),
-            inverseJoinColumns = @JoinColumn(name = "TRAINING_ID")
+            joinColumns = @JoinColumn(name = "TRAINING_ID"),
+            inverseJoinColumns = @JoinColumn(name = "TRAINER_ID")
     )
     private List<Trainer> trainers;
 
+    public Training(Long id) {
+        this.id = id;
+    }
 }

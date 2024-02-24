@@ -1,5 +1,6 @@
 package com.learn.springfoundation.repository;
 
+import com.learn.springfoundation.trainer.Trainer;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -19,7 +20,12 @@ public class Facility {
     private Integer initialoutlay;
     private Integer monthlymaintenance;
 
-    @ManyToMany(mappedBy = "facilities")
+    @ManyToMany
+    @JoinTable(
+            name = "T_F",
+            joinColumns = @JoinColumn(name = "FACILITY_ID"),
+            inverseJoinColumns = @JoinColumn(name = "TRAINER_ID")
+    )
     private List<Trainer> trainers;
 
     public Facility(String[] columns) {
@@ -35,6 +41,9 @@ public class Facility {
 
     }
 
+    public Facility(Long id) {
+        setFacid(id);
+    }
 
     public Long getFacid() {
         return facid;
