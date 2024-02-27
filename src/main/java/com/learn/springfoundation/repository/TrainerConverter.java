@@ -2,6 +2,7 @@ package com.learn.springfoundation.repository;
 
 import com.learn.springfoundation.trainer.Trainer;
 import com.learn.springfoundation.trainer.TrainerDTO;
+import com.learn.springfoundation.trophy.Trophy;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

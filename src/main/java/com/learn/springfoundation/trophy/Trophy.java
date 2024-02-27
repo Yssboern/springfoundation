@@ -1,5 +1,6 @@
-package com.learn.springfoundation.repository;
+package com.learn.springfoundation.trophy;
 
+import com.learn.springfoundation.repository.Training;
 import com.learn.springfoundation.trainer.Trainer;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,13 +20,11 @@ public class Trophy {
     @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
+    private String name;
+    private Integer year;
     @ManyToOne
     @JoinColumn(name = "TRAINER_ID")
     private Trainer trainer;
-
-    private String name;
-    private Integer year;
 
     @ManyToOne
     private Training discipline;
