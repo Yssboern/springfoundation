@@ -1,6 +1,5 @@
 package com.learn.springfoundation.trophy;
 
-import com.learn.springfoundation.repository.Training;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

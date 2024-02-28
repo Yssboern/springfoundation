@@ -5,6 +5,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
@@ -18,6 +20,18 @@ public class BookingController {
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "5") int size) {
         return bookingDAO.getAllPaginated(PageRequest.of(page - 1, size));
+    }
+
+    @GetMapping("/bookings/views/all")
+    public List<BookingView> getBookingViews() {
+        return bookingDAO.getBookingViews();
+    }
+
+    @GetMapping("/bookings/views")
+    public Page<BookingView> getPaginatedBookingViews(
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "5") int size) {
+        return bookingDAO.getPaginatedBookingViews(PageRequest.of(page, size));
     }
 
     @GetMapping("/bookings/{id}")

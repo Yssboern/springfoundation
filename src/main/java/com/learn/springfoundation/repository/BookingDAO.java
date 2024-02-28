@@ -1,9 +1,11 @@
 package com.learn.springfoundation.repository;
 
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 
@@ -16,7 +18,15 @@ import java.util.Optional;
 @AllArgsConstructor
 public class BookingDAO {
 
+    private static final String bookingsCount = "SELECT COUNT(booking) FROM Booking booking";
+    private static final String bookingsWithNames =
+            "SELECT NEW com.learn.springfoundation.repository.BookingView(booking.bookid, m.firstname, m.surname, f.name, booking.starttime, booking.slots) " +
+                    "FROM Booking booking " +
+                    "JOIN booking.memid m ON booking.memid.memid=m.memid " +
+                    "JOIN booking.facid f ON booking.facid.facid=f.facid ";
+
     private final BookingsRepo repo;
+    private final EntityManager entityManager;
 
     List<BookingDTO> getAll() {
         var ff = repo.findAll();
@@ -48,6 +58,23 @@ public class BookingDAO {
                 entity.getStarttime(),
                 entity.getSlots()
         );
+    }
+
+    List<BookingView> getBookingViews() {
+        return entityManager.createQuery(bookingsWithNames, BookingView.class).getResultList();
+    }
+
+    public Page<BookingView> getPaginatedBookingViews(PageRequest pageRequest) {
+
+        int offset = pageRequest.getPageNumber() * pageRequest.getPageSize();
+
+        List<BookingView> resultList = entityManager.createQuery(bookingsWithNames, BookingView.class)
+                .setFirstResult(offset)
+                .setMaxResults(pageRequest.getPageSize())
+                .getResultList();
+
+        long totalCount = entityManager.createQuery(bookingsCount, Long.class).getSingleResult();
+        return new PageImpl<>(resultList, pageRequest, totalCount);
     }
 
 }

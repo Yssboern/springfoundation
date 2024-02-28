@@ -1,8 +1,9 @@
 package com.learn.springfoundation.repository;
 
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
@@ -11,14 +12,11 @@ import java.util.Optional;
 
 @Component
 @Slf4j
+@AllArgsConstructor
 public class TrainingDAO {
 
     private final TrainingRepo trainingRepo;
-
-    @Autowired
-    public TrainingDAO(TrainingRepo trainingRepo) {
-        this.trainingRepo = trainingRepo;
-    }
+    private final EntityManager entityManager;
 
     public TrainingDTO toDTO(Training entity) {
         return new TrainingDTO(entity.getId(), entity.getName());
