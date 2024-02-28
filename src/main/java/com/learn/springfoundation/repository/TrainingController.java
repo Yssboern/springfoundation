@@ -32,7 +32,9 @@ public class TrainingController {
     @GetMapping
     public ResponseEntity<Page<TrainingDTO>> getPaginatedTrainings(@RequestParam(defaultValue = "1") int page,
                                                                    @RequestParam(defaultValue = "7") int size) {
+        System.out.println("http://localhost:8080/api/trainings?page=" + page);
         Page<TrainingDTO> trainingPage = trainingDAO.getPaginatedTrainings(PageRequest.of(page - 1, size));
+        System.out.println("----------------------------------------------");
         return ResponseEntity.ok(trainingPage);
     }
 

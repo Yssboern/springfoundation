@@ -29,7 +29,10 @@ public class TrainerController {
 
     @GetMapping("/trainers/{id}")
     public ResponseEntity<TrainerDetails> getTrainers(@PathVariable Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(trainerDetailsDAO.getById(id));
+        System.out.println("http://localhost:8080/api/trainers/" + id);
+        var out = trainerDetailsDAO.getById(id);
+        System.out.println("----------------------------------");
+        return ResponseEntity.status(HttpStatus.OK).body(out);
     }
 
     @PostMapping("/trainers")
@@ -40,8 +43,8 @@ public class TrainerController {
 
     @PutMapping("/trainers/{id}")
     public ResponseEntity<TrainerDTO> updateTrainer(@RequestBody TrainerDTO trainer) {
-        var createdTrainer = trainerDAO.update(trainer);
-        return ResponseEntity.status(HttpStatus.CREATED).body(trainer);
+        var updatedTrainer = trainerDAO.update(trainer);
+        return ResponseEntity.status(HttpStatus.CREATED).body(updatedTrainer);
     }
 
     @GetMapping("/trainers/{id}/skills")

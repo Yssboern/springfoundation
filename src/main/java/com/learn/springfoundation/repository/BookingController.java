@@ -29,8 +29,8 @@ public class BookingController {
 
     @GetMapping("/bookings/views")
     public Page<BookingView> getPaginatedBookingViews(
-            @RequestParam(defaultValue = "1") int page,
-            @RequestParam(defaultValue = "5") int size) {
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "20") int size) {
         return bookingDAO.getPaginatedBookingViews(PageRequest.of(page, size));
     }
 

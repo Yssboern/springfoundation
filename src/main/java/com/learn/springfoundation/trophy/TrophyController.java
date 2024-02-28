@@ -19,7 +19,10 @@ public class TrophyController {
     public Page<TrophyDTO> getAllPaginated(
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "5") int size) {
-        return dao.getPaginatedTrophies(PageRequest.of(page - 1, size));
+        System.out.println("http://localhost:8080/api/trophies?page=" + page);
+        var result = dao.getPaginatedTrophies(PageRequest.of(page - 1, size));
+        System.out.println("----------------------------------------------");
+        return result;
     }
 
     @GetMapping("/trophies/{id}")

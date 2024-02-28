@@ -33,7 +33,7 @@ public class TrainerConverter {
 
         List<Trophy> trophies = new ArrayList<>();
         if (dto.getTrophies() != null) {
-            trophies = dto.getTrophies().stream().map(id -> new Trophy()).toList();
+            trophies = dto.getTrophies().stream().map(id -> new Trophy(id, entity)).toList();
         }
         entity.setTrophies(trophies);
         return entity;

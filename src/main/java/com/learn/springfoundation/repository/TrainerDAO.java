@@ -61,8 +61,11 @@ public class TrainerDAO {
     public TrainerDTO update(TrainerDTO trainer) {
         var entity = converter.toEntity(trainer);
         var e = trainerRepo.save(entity);
-        log.info("New trainer created: " + e.getFirstname() + " " + e.getSurname());
+        log.info("Trainer updated: " + e.getFirstname() + " " + e.getSurname());
         return converter.toDTO(e);
     }
+
+
+
 
 }

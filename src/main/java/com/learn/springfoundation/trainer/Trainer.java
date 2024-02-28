@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -19,7 +20,6 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-//@NamedEntityGraph(name = "TrainerEntity.facilities",  attributeNodes = @NamedAttributeNode("facilities"))
 public class Trainer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,6 +28,7 @@ public class Trainer {
     private String surname;
     private String firstname;
 
+    @BatchSize(size = 10)
     @ManyToMany
     @JoinTable(name = "TRAINER_SKILLS",
             joinColumns = @JoinColumn(name = "TRAINER_ID"),
@@ -35,10 +36,12 @@ public class Trainer {
     @Fetch(FetchMode.SUBSELECT)
     private List<Training> specialisations;
 
+    @BatchSize(size = 10)
     @OneToMany(mappedBy = "trainer")
     @Fetch(FetchMode.SUBSELECT)
     private List<Trophy> trophies = new java.util.ArrayList<>();
 
+    @BatchSize(size = 10)
     @ManyToMany
     @JoinTable(
             name = "T_F",

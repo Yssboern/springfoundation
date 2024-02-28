@@ -67,9 +67,4 @@ public class SQLController {
     }
 
 
-//    @GetMapping("/trainers")
-//    List<TrainerDTO> getTrainers() {
-//        return trainerDAO.getAll();
-//    }
-
 }

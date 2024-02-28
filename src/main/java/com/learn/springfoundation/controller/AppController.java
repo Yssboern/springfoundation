@@ -4,6 +4,7 @@ import com.learn.springfoundation.repository.TstEntity;
 import com.learn.springfoundation.service.AppService;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalTime;
 import java.util.List;
 
 @RestController
@@ -34,6 +35,13 @@ public class AppController {
     @PostMapping("/populate")
     void populate(@RequestParam(name = "count", defaultValue = "11") int count) {
         appService.populateDB(count);
+    }
+
+    @GetMapping("/marker")
+    public void markConsole() {
+        System.out.println("########################################################");
+        System.out.println("Current Time: " + LocalTime.now().toString());
+        System.out.println("########################################################");
     }
 
 }

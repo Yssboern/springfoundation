@@ -3,8 +3,6 @@ package com.learn.springfoundation.repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -20,7 +18,10 @@ public class FacilityController {
     public Page<FacilityDTO> getAllPaginated(
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "5") int size) {
-        return dao.getAllPaginated(PageRequest.of(page - 1, size));
+        System.out.println("http://localhost:8080/api/facilities?page=$" + page);
+        var result = dao.getAllPaginated(PageRequest.of(page - 1, size));
+        System.out.println("----------------------------------------------");
+        return result;
     }
 
     @GetMapping("/facilities/{id}")

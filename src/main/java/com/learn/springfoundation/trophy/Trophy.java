@@ -33,4 +33,9 @@ public class Trophy {
         this.id = id;
     }
 
+    public Trophy(Long id, Trainer entity) {
+        this.id = id;
+        this.trainer = entity;
+    }
+
 }
