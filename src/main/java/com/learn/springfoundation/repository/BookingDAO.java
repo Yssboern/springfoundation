@@ -53,8 +53,8 @@ public class BookingDAO {
     private BookingDTO toDTO(Booking entity) {
         return new BookingDTO(
                 entity.getBookid(),
-                entity.getFacid().getFacid(), // Assuming facid is Long in FacilityEntity
-                entity.getMemid().getMemid(), // Assuming memid is Long in MemberEntity
+                entity.getFacid().getFacid(),
+                entity.getMemid().getMemid(),
                 entity.getStarttime(),
                 entity.getSlots()
         );
@@ -67,7 +67,6 @@ public class BookingDAO {
     public Page<BookingView> getPaginatedBookingViews(PageRequest pageRequest) {
 
         int offset = pageRequest.getPageNumber() * pageRequest.getPageSize();
-
         List<BookingView> resultList = entityManager.createQuery(bookingsWithNames, BookingView.class)
                 .setFirstResult(offset)
                 .setMaxResults(pageRequest.getPageSize())
