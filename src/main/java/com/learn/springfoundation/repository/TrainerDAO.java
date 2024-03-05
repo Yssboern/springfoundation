@@ -2,6 +2,9 @@ package com.learn.springfoundation.repository;
 
 import com.learn.springfoundation.trainer.Trainer;
 import com.learn.springfoundation.trainer.TrainerDTO;
+import com.learn.springfoundation.trophy.Trophy;
+import com.learn.springfoundation.trophy.TrophyRepo;
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +22,9 @@ import java.util.Optional;
 @AllArgsConstructor
 public class TrainerDAO {
 
+    private final EntityManager em;
     private final TrainerRepo trainerRepo;
+    private final TrophyRepo trophyRepo;
     private final TrainerConverter converter;
 
     List<TrainerDTO> getAll() {
@@ -59,13 +64,21 @@ public class TrainerDAO {
     }
 
     public TrainerDTO update(TrainerDTO trainer) {
+        System.out.println("----------------------------------------------");
         var entity = converter.toEntity(trainer);
+        List<Trophy> trophies = trophyRepo.findAllById(trainer.getTrophies());
+        trophies.forEach(trophy -> trophy.setTrainer(entity));
+        entity.setTrophies(trophies);
         var e = trainerRepo.save(entity);
         log.info("Trainer updated: " + e.getFirstname() + " " + e.getSurname());
+        System.out.println("----------------------------------------------");
         return converter.toDTO(e);
     }
 
-
-
-
+    public TrainerDTO updateEM(TrainerDTO trainer) {
+        var e = converter.toEntity(trainer);
+        e = trainerRepo.save(e);
+        log.info("Trainer updated: " + e.getFirstname() + " " + e.getSurname());
+        return converter.toDTO(e);
+    }
 }

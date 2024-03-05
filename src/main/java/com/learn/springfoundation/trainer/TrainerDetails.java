@@ -19,6 +19,6 @@ public class TrainerDetails {
     private List<IdName> facilities;
     private List<IdName> skills;
     private List<IdName> trophies;
-
+    private List<IdName> notes;
 
 }

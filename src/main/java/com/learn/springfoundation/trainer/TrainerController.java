@@ -48,8 +48,19 @@ public class TrainerController {
     }
 
     @GetMapping("/trainers/{id}/skills")
+
     public List<IdName> getTrainerSkills(@PathVariable Long id) {
         return trainerDetailsDAO.getTrainingDisplayList(id);
+    }
+
+    @GetMapping("/trainers/{id}/notes")
+    public List<IdName> getTrainerNotes(@PathVariable Long id) {
+        return trainerDetailsDAO.getTrainersNotes(id);
+    }
+
+    @PostMapping("/trainers/{id}/notes")
+    public TrainerDetails addTrainerNote(@PathVariable Long id, @RequestBody IdName note) {
+        return trainerDetailsDAO.addTrainersNote2(id, note);
     }
 
 }

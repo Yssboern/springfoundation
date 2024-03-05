@@ -1,8 +1,11 @@
 package com.learn.springfoundation.repository;
 
+import com.learn.springfoundation.trainer.IdName;
 import com.learn.springfoundation.trainer.Trainer;
 import com.learn.springfoundation.trainer.TrainerDTO;
+import com.learn.springfoundation.trainer.TrainerDetails;
 import com.learn.springfoundation.trophy.Trophy;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -72,4 +75,16 @@ public class TrainerConverter {
         );
     }
 
+    public TrainerDetails toDetails(Trainer entity){
+            TrainerDetails details = new TrainerDetails();
+            details.setId(entity.getId());
+            details.setFirstname(entity.getFirstname());
+            details.setSurname(entity.getSurname());
+            details.setFacilities(entity.getFacilities().stream().map(facility -> new IdName(facility.getFacid(), facility.getName())).toList());
+            details.setSkills(entity.getSpecialisations().stream().map(skill -> new IdName(skill.getId(), skill.getName())).toList());
+            details.setTrophies(entity.getTrophies().stream().map(trophy -> new IdName(trophy.getId(), trophy.getName())).toList());
+            details.setTrophies(entity.getTrophies().stream().map(trophy -> new IdName(trophy.getId(), trophy.getName())).toList());
+            details.setNotes(entity.getTrainersNotes().stream().map(trophy -> new IdName(trophy.getId(), trophy.getNote())).toList());
+            return details;
+    }
 }

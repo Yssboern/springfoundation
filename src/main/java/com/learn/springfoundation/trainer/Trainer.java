@@ -1,6 +1,7 @@
 package com.learn.springfoundation.trainer;
 
 import com.learn.springfoundation.repository.Facility;
+import com.learn.springfoundation.repository.PersonalID;
 import com.learn.springfoundation.repository.Training;
 import com.learn.springfoundation.trophy.Trophy;
 import jakarta.persistence.*;
@@ -39,7 +40,7 @@ public class Trainer {
     @BatchSize(size = 10)
     @OneToMany(mappedBy = "trainer")
     @Fetch(FetchMode.SUBSELECT)
-    private List<Trophy> trophies = new java.util.ArrayList<>();
+    private List<Trophy> trophies;
 
     @BatchSize(size = 10)
     @ManyToMany
@@ -51,4 +52,13 @@ public class Trainer {
     @Fetch(FetchMode.SUBSELECT)
     private List<Facility> facilities;
 
+    @OneToOne
+    private PersonalID personalID;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<TrainersNote> trainersNotes;
+
+    public Trainer(Long trainerId) {
+        this.id = trainerId;
+    }
 }
