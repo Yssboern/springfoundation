@@ -1,7 +1,5 @@
 package com.learn.springfoundation.trainer;
 
-import com.learn.springfoundation.repository.NewTrainer;
-import com.learn.springfoundation.repository.TrainerDAO;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -33,6 +31,14 @@ public class TrainerController {
         var out = trainerDetailsDAO.getById(id);
         System.out.println("----------------------------------");
         return ResponseEntity.status(HttpStatus.OK).body(out);
+    }
+
+    @DeleteMapping("/trainers/{id}")
+    public ResponseEntity<?> deleteTrainer(@PathVariable Long id) {
+        System.out.println("http://localhost:8080/api/trainers/" + id);
+        trainerDetailsDAO.deleteById(id);
+        System.out.println("----------------------------------");
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @PostMapping("/trainers")

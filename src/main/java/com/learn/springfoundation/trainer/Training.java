@@ -1,6 +1,6 @@
-package com.learn.springfoundation.trophy;
+package com.learn.springfoundation.trainer;
 
-import com.learn.springfoundation.trainer.Training;
+
 import com.learn.springfoundation.trainer.Trainer;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,30 +8,31 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
-@Table(schema = "TGN", name = "TROPHIES")
+@Table(schema = "TGN", name = "TRAININGS")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Trophy {
+public class Training {
 
     @Id
     @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String name;
-    private Integer year;
-    @ManyToOne
-    @JoinColumn(name = "TRAINER_ID")
-    private Trainer trainer;
 
-    @ManyToOne
-    private Training discipline;
+    @ManyToMany
+    @JoinTable(name = "TRAINER_SKILLS",
+            joinColumns = @JoinColumn(name = "TRAINING_ID"),
+            inverseJoinColumns = @JoinColumn(name = "TRAINER_ID")
+    )
+    private List<Trainer> trainers;
 
-    public Trophy(Long id, Trainer entity) {
+    public Training(Long id) {
         this.id = id;
-        this.trainer = entity;
     }
-
 }

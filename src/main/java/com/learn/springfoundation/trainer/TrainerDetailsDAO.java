@@ -1,7 +1,5 @@
 package com.learn.springfoundation.trainer;
 
-import com.learn.springfoundation.repository.TrainerConverter;
-import com.learn.springfoundation.repository.TrainerRepo;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
@@ -92,6 +90,10 @@ public class TrainerDetailsDAO {
 
         var r = trainerRepo.save(trainer);
         return converter.toDetails(trainer);
+    }
+
+    public void deleteById(Long id) {
+        trainerRepo.deleteById(id);
     }
 
 }

@@ -1,8 +1,6 @@
 package com.learn.springfoundation.trainer;
 
-import com.learn.springfoundation.repository.Facility;
-import com.learn.springfoundation.repository.PersonalID;
-import com.learn.springfoundation.repository.Training;
+import com.learn.springfoundation.facility.Facility;
 import com.learn.springfoundation.trophy.Trophy;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
