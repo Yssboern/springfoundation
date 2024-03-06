@@ -1,4 +1,4 @@
-package com.learn.springfoundation.repository;
+package com.learn.springfoundation.trainer;
 
 
 import com.learn.springfoundation.trainer.Trainer;
