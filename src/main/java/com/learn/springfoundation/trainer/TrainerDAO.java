@@ -66,7 +66,7 @@ public class TrainerDAO {
         var trophies = trophyRepo.findAllById(trainer.getTrophies());
         trophies.forEach(trophy -> trophy.setTrainer(entity));
         entity.setTrophies(trophies);
-        var notes = trainer.getNotes().stream().map(n -> new TrainersNote(n.getId(), n.getText(), entity)).toList();
+        var notes = trainer.getNotes().stream().map(n -> new TrainersNote(n.id(), n.text(), entity)).toList();
         entity.setTrainersNotes(notes);
 
         var e = trainerRepo.save(entity);
@@ -81,4 +81,5 @@ public class TrainerDAO {
         log.info("Trainer updated: " + e.getFirstname() + " " + e.getSurname());
         return converter.toDTO(e);
     }
+
 }

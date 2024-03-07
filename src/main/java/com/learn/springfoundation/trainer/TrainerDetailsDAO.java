@@ -56,15 +56,15 @@ class TrainerDetailsDAO {
 
     private void displayList(List<IdText> results) {
         for (IdText info : results) {
-            Long id = info.getId();
-            String text = info.getText();
+            Long id = info.id();
+            String text = info.text();
             System.out.println(id + " " + text);
         }
     }
 
     public IdText addTrainersNote(Long trainerId, IdText note) {
         var trainer = new Trainer(trainerId);
-        var newNote = new TrainersNote(note.getText(), trainer);
+        var newNote = new TrainersNote(note.text(), trainer);
 
         List<TrainersNote> notes = new ArrayList<>();
         notes.add(newNote);
@@ -76,7 +76,7 @@ class TrainerDetailsDAO {
 
     public TrainerDetails addTrainersNote2(Long trainerId, IdText note) {
         var trainer = trainerRepo.findById(trainerId).orElseThrow();
-        var newNote = new TrainersNote(note.getText(), trainer);
+        var newNote = new TrainersNote(note.text(), trainer);
         trainer.getTrainersNotes().add(newNote);
 
         var r = trainerRepo.save(trainer);

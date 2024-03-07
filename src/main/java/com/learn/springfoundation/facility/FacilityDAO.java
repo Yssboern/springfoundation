@@ -1,5 +1,6 @@
 package com.learn.springfoundation.facility;
 
+import com.learn.springfoundation.trainer.IdText;
 import com.learn.springfoundation.trainer.Trainer;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.data.domain.Page;
@@ -35,6 +36,16 @@ public class FacilityDAO {
                 entity.getMonthlymaintenance(),
                 trainerIds
         );
+    }
+
+    public Page<IdText> getAllPaginatedItemList(PageRequest of) {
+        return repo.findAll(of)
+                .map(this::toIdText);
+    }
+
+    private IdText toIdText(Facility entity) {
+
+        return new IdText(entity.getFacid(), entity.getName());
     }
 
     public Page<FacilityDTO> getAllPaginated(PageRequest of) {

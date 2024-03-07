@@ -1,5 +1,6 @@
 package com.learn.springfoundation.facility;
 
+import com.learn.springfoundation.trainer.IdText;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,6 +21,16 @@ public class FacilityController {
             @RequestParam(defaultValue = "5") int size) {
         System.out.println("http://localhost:8080/api/facilities?page=$" + page);
         var result = dao.getAllPaginated(PageRequest.of(page - 1, size));
+        System.out.println("----------------------------------------------");
+        return result;
+    }
+
+    @GetMapping("/facilities/selection")
+    public Page<IdText> getAllPaginatedSelectionList(
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "5") int size) {
+        System.out.println("http://localhost:8080/api/facilities/selection?page=$" + page);
+        var result = dao.getAllPaginatedItemList(PageRequest.of(page - 1, size));
         System.out.println("----------------------------------------------");
         return result;
     }

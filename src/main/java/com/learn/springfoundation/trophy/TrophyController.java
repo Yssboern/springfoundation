@@ -1,5 +1,6 @@
 package com.learn.springfoundation.trophy;
 
+import com.learn.springfoundation.trainer.IdText;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,6 +22,16 @@ public class TrophyController {
             @RequestParam(defaultValue = "5") int size) {
         System.out.println("http://localhost:8080/api/trophies?page=" + page);
         var result = dao.getPaginatedTrophies(PageRequest.of(page - 1, size));
+        System.out.println("----------------------------------------------");
+        return result;
+    }
+
+    @GetMapping("/trophies/selection")
+    public Page<IdText> getAllPaginatedSelectionList(
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "5") int size) {
+        System.out.println("http://localhost:8080/api/trophies/selection?page=" + page);
+        var result = dao.getPaginatedTrophiesSelectionList(PageRequest.of(page - 1, size));
         System.out.println("----------------------------------------------");
         return result;
     }

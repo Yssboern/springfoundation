@@ -38,6 +38,15 @@ class TrainingController {
         return ResponseEntity.ok(trainingPage);
     }
 
+    @GetMapping("/selection")
+    public ResponseEntity<Page<IdText>> getPaginatedTrainingsSelectionList(@RequestParam(defaultValue = "1") int page,
+                                                                           @RequestParam(defaultValue = "7") int size) {
+        System.out.println("http://localhost:8080/api/trainings/selection" + page);
+        Page<IdText> trainingPage = trainingDAO.getPaginatedTrainingsSelectionList(PageRequest.of(page - 1, size));
+        System.out.println("----------------------------------------------");
+        return ResponseEntity.ok(trainingPage);
+    }
+
     @PostMapping
     public ResponseEntity<TrainingDTO> createTraining(@RequestBody TrainingDTO trainingDTO) {
         TrainingDTO createdTrainingDTO = trainingDAO.createNewTraining(trainingDTO);

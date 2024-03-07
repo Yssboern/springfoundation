@@ -1,5 +1,6 @@
 package com.learn.springfoundation.trophy;
 
+import com.learn.springfoundation.trainer.IdText;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +35,19 @@ public class TrophyDAO {
         }
     }
 
+
     public Page<TrophyDTO> getPaginatedTrophies(PageRequest pageRequest) {
         return trophyRepo.findAll(pageRequest)
                 .map(this::toDTO);
+    }
+
+    public Page<IdText> getPaginatedTrophiesSelectionList(PageRequest pageRequest) {
+        return trophyRepo.findAll(pageRequest)
+                .map(this::toIdText);
+    }
+
+    private IdText toIdText(Trophy entity) {
+        return new IdText(entity.getId(), entity.getName());
     }
 
     public TrophyDTO createNewTrophy(NewTrophy newTrophy) {

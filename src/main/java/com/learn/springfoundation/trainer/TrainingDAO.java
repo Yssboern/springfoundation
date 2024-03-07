@@ -37,6 +37,15 @@ class TrainingDAO {
                 .map(this::toDTO);
     }
 
+    public Page<IdText> getPaginatedTrainingsSelectionList(PageRequest pageRequest) {
+        return trainingRepo.findAll(pageRequest)
+                .map(this::toIdText);
+    }
+
+    private IdText toIdText(Training entity) {
+        return new IdText(entity.getId(), entity.getName());
+    }
+
     public TrainingDTO createNewTraining(TrainingDTO trainingDTO) {
         Training newEntity = new Training();
         newEntity.setName(trainingDTO.getName());
