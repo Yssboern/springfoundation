@@ -1,5 +1,6 @@
 package com.learn.springfoundation.trainer;
 
+import com.learn.springfoundation.IdText;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,11 +20,5 @@ class TrainerDTO {
     private List<Long> specialisations;
     private List<Long> trophies;
     private List<IdText> notes;
-
-    public TrainerDTO(Long id, String surname, String firstname) {
-        this.id = id;
-        this.surname = surname;
-        this.firstname = firstname;
-    }
 
 }

@@ -1,6 +1,6 @@
 package com.learn.springfoundation.facility;
 
-import com.learn.springfoundation.trainer.IdText;
+import com.learn.springfoundation.IdText;
 import com.learn.springfoundation.trainer.Trainer;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.data.domain.Page;
@@ -13,7 +13,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
-public class FacilityDAO {
+class FacilityDAO {
 
     private final FacilitiesRepo repo;
 

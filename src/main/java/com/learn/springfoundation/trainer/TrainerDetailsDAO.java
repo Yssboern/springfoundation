@@ -1,5 +1,6 @@
 package com.learn.springfoundation.trainer;
 
+import com.learn.springfoundation.IdText;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
@@ -29,7 +30,7 @@ class TrainerDetailsDAO {
     }
 
     List<IdText> getTrainingDisplayList(Long trainerId) {
-        String sql = "SELECT NEW com.learn.springfoundation.trainer.IdText(ts.id, ts.name) " +
+        String sql = "SELECT NEW com.learn.springfoundation.IdText(ts.id, ts.name) " +
                 "FROM Trainer trainer " +
                 "JOIN trainer.specialisations ts " +
                 "WHERE trainer.id = :trainerId";
@@ -42,7 +43,7 @@ class TrainerDetailsDAO {
     }
 
     public List<IdText> getTrainersNotes(Long trainerId) {
-        String sql = "SELECT NEW com.learn.springfoundation.trainer.IdText(tn.id, tn.note) " +
+        String sql = "SELECT NEW com.learn.springfoundation.IdText(tn.id, tn.note) " +
                 "FROM Trainer trainer " +
                 "JOIN trainer.trainersNotes tn " +
                 "WHERE trainer.id = :trainerId";

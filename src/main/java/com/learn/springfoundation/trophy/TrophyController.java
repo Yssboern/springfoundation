@@ -1,6 +1,6 @@
 package com.learn.springfoundation.trophy;
 
-import com.learn.springfoundation.trainer.IdText;
+import com.learn.springfoundation.IdText;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
-public class TrophyController {
+class TrophyController {
 
     @Autowired
     private TrophyDAO dao;

@@ -16,7 +16,7 @@ import java.util.Optional;
 @Repository
 @Transactional
 @AllArgsConstructor
-public class BookingDAO {
+class BookingDAO {
 
     private static final String bookingsCount = "SELECT COUNT(booking) FROM Booking booking";
     private static final String bookingsWithNames =

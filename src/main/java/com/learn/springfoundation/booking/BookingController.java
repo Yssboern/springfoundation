@@ -10,7 +10,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
-public class BookingController {
+class BookingController {
 
     @Autowired
     private BookingDAO bookingDAO;

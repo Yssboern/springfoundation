@@ -1,5 +1,6 @@
 package com.learn.springfoundation.trainer;
 
+import com.learn.springfoundation.IdText;
 import com.learn.springfoundation.facility.Facility;
 import com.learn.springfoundation.trophy.Trophy;
 import org.springframework.stereotype.Component;
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class TrainerConverter {
+class TrainerConverter {
 
     public Trainer toEntity(TrainerDTO dto) {
 

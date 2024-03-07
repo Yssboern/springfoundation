@@ -1,5 +1,6 @@
 package com.learn.springfoundation.trainer;
 
+import com.learn.springfoundation.IdText;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

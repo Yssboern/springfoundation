@@ -1,6 +1,6 @@
 package com.learn.springfoundation.facility;
 
-import com.learn.springfoundation.trainer.IdText;
+import com.learn.springfoundation.IdText;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
-public class FacilityController {
+class FacilityController {
 
     @Autowired
     private FacilityDAO dao;

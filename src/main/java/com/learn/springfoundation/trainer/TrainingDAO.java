@@ -1,6 +1,6 @@
 package com.learn.springfoundation.trainer;
 
-import jakarta.persistence.EntityManager;
+import com.learn.springfoundation.IdText;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +16,6 @@ import java.util.Optional;
 class TrainingDAO {
 
     private final TrainingRepo trainingRepo;
-    private final EntityManager entityManager;
 
     public TrainingDTO toDTO(Training entity) {
         return new TrainingDTO(entity.getId(), entity.getName());
@@ -48,7 +47,7 @@ class TrainingDAO {
 
     public TrainingDTO createNewTraining(TrainingDTO trainingDTO) {
         Training newEntity = new Training();
-        newEntity.setName(trainingDTO.getName());
+        newEntity.setName(trainingDTO.name());
         Training savedTraining = trainingRepo.save(newEntity);
         log.info("New training created: " + savedTraining.getName());
         return toDTO(savedTraining);

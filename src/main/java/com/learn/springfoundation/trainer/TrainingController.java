@@ -1,5 +1,6 @@
 package com.learn.springfoundation.trainer;
 
+import com.learn.springfoundation.IdText;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

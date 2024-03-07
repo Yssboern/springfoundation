@@ -1,6 +1,6 @@
 package com.learn.springfoundation.trophy;
 
-import com.learn.springfoundation.trainer.IdText;
+import com.learn.springfoundation.IdText;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Component
 @Slf4j
-public class TrophyDAO {
+class TrophyDAO {
 
     private final TrophyRepo trophyRepo;
 
@@ -52,8 +52,8 @@ public class TrophyDAO {
 
     public TrophyDTO createNewTrophy(NewTrophy newTrophy) {
         Trophy newEntity = new Trophy();
-        newEntity.setName(newTrophy.getName());
-        newEntity.setYear(newTrophy.getYear());
+        newEntity.setName(newTrophy.name());
+        newEntity.setYear(newTrophy.year());
 //        var training = new Training();
 //        training.setId(newTrophy.getId());
 //        newEntity.setDiscipline(training);

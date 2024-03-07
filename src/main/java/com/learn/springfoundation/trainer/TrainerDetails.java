@@ -1,5 +1,7 @@
 package com.learn.springfoundation.trainer;
 
+import com.learn.springfoundation.IdText;
+
 import java.util.List;
 
 record TrainerDetails(
