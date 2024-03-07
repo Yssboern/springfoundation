@@ -1,7 +1,5 @@
 package com.learn.springfoundation.trainer;
 
-
-import com.learn.springfoundation.trainer.Trainer;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

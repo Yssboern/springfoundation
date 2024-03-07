@@ -11,13 +11,14 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TrainerDTO {
+class TrainerDTO {
     private Long id;
     private String surname;
     private String firstname;
     private List<Long> facilityIds;
     private List<Long> specialisations;
     private List<Long> trophies;
+    private List<IdName> notes;
 
     public TrainerDTO(Long id, String surname, String firstname) {
         this.id = id;

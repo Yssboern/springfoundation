@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class TrainerConverter {
@@ -61,26 +62,42 @@ public class TrainerConverter {
             trophies = entity.getTrophies().stream().map(Trophy::getId).toList();
         }
 
+        List<IdName> notes;
+        if (entity.getTrainersNotes() == null) {
+            notes = Collections.emptyList();
+        } else {
+            notes = entity.getTrainersNotes().stream().map(n -> new IdName(n.getId(), n.getNote())).toList();
+        }
+
         return new TrainerDTO(
                 entity.getId(),
                 entity.getSurname(),
                 entity.getFirstname(),
                 facilityIds,
                 skills,
-                trophies
+                trophies,
+                notes
         );
     }
 
-    public TrainerDetails toDetails(Trainer entity){
-            TrainerDetails details = new TrainerDetails();
-            details.setId(entity.getId());
-            details.setFirstname(entity.getFirstname());
-            details.setSurname(entity.getSurname());
-            details.setFacilities(entity.getFacilities().stream().map(facility -> new IdName(facility.getFacid(), facility.getName())).toList());
-            details.setSkills(entity.getSpecialisations().stream().map(skill -> new IdName(skill.getId(), skill.getName())).toList());
-            details.setTrophies(entity.getTrophies().stream().map(trophy -> new IdName(trophy.getId(), trophy.getName())).toList());
-            details.setTrophies(entity.getTrophies().stream().map(trophy -> new IdName(trophy.getId(), trophy.getName())).toList());
-            details.setNotes(entity.getTrainersNotes().stream().map(trophy -> new IdName(trophy.getId(), trophy.getNote())).toList());
-            return details;
+    public TrainerDetails toDetails(Trainer entity) {
+        return new TrainerDetails(
+                entity.getId(),
+                entity.getSurname(),
+                entity.getFirstname(),
+                entity.getFacilities().stream()
+                        .map(facility -> new IdName(facility.getFacid(), facility.getName()))
+                        .collect(Collectors.toList()),
+                entity.getSpecialisations().stream()
+                        .map(skill -> new IdName(skill.getId(), skill.getName()))
+                        .collect(Collectors.toList()),
+                entity.getTrophies().stream()
+                        .map(trophy -> new IdName(trophy.getId(), trophy.getName()))
+                        .collect(Collectors.toList()),
+                entity.getTrainersNotes().stream()
+                        .map(note -> new IdName(note.getId(), note.getNote()))
+                        .collect(Collectors.toList())
+        );
     }
+
 }

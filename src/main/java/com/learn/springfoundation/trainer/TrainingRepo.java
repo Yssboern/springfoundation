@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @Transactional
-public interface TrainingRepo extends CrudRepository<Training, Long> {
+interface TrainingRepo extends CrudRepository<Training, Long> {
 
     Page<Training> findAll(Pageable pageable);
 }

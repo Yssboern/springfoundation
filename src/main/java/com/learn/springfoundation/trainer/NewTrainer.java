@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class NewTrainer {
+class NewTrainer {
 
     private String firstName;
     private String lastName;

@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Component
 @AllArgsConstructor
-public class TrainerDetailsDAO {
+class TrainerDetailsDAO {
 
     private final TrainerRepo trainerRepo;
     private final TrainersNotesRepo trainersNotesRepo;
@@ -22,16 +22,7 @@ public class TrainerDetailsDAO {
         Optional<Trainer> optionalTrainer = trainerRepo.findById(id);
         if (optionalTrainer.isPresent()) {
             Trainer entity = optionalTrainer.get();
-            TrainerDetails details = new TrainerDetails();
-            details.setId(entity.getId());
-            details.setFirstname(entity.getFirstname());
-            details.setSurname(entity.getSurname());
-            details.setFacilities(entity.getFacilities().stream().map(facility -> new IdName(facility.getFacid(), facility.getName())).toList());
-            details.setSkills(entity.getSpecialisations().stream().map(skill -> new IdName(skill.getId(), skill.getName())).toList());
-            details.setTrophies(entity.getTrophies().stream().map(trophy -> new IdName(trophy.getId(), trophy.getName())).toList());
-            details.setTrophies(entity.getTrophies().stream().map(trophy -> new IdName(trophy.getId(), trophy.getName())).toList());
-            details.setNotes(entity.getTrainersNotes().stream().map(trophy -> new IdName(trophy.getId(), trophy.getNote())).toList());
-            return details;
+            return converter.toDetails(entity);
         } else {
             throw new EntityNotFoundException("Trainer with id " + id + " not found");
         }

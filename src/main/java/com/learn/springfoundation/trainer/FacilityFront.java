@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class FacilityFront {
+class FacilityFront {
 
     private Long facid;
     private String name;

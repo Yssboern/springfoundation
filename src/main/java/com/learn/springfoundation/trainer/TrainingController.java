@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/trainings")
-public class TrainingController {
+class TrainingController {
 
     private final TrainingDAO trainingDAO;
 

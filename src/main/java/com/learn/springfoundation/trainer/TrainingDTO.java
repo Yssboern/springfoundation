@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class TrainingDTO {
+class TrainingDTO {
 
     private Long id;
     private String name;

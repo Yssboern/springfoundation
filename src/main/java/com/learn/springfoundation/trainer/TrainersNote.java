@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class TrainersNote {
+class TrainersNote {
 
     @Id
     @Column(name = "ID", nullable = false)

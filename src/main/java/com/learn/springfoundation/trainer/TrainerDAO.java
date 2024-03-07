@@ -64,9 +64,12 @@ public class TrainerDAO {
     public TrainerDTO update(TrainerDTO trainer) {
         System.out.println("----------------------------------------------");
         var entity = converter.toEntity(trainer);
-        List<Trophy> trophies = trophyRepo.findAllById(trainer.getTrophies());
+        var trophies = trophyRepo.findAllById(trainer.getTrophies());
         trophies.forEach(trophy -> trophy.setTrainer(entity));
         entity.setTrophies(trophies);
+        var notes = trainer.getNotes().stream().map(n -> new TrainersNote(n.getId(), n.getName(), entity)).toList();
+        entity.setTrainersNotes(notes);
+
         var e = trainerRepo.save(entity);
         log.info("Trainer updated: " + e.getFirstname() + " " + e.getSurname());
         System.out.println("----------------------------------------------");

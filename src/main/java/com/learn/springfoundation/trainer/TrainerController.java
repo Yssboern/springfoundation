@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 @AllArgsConstructor
-public class TrainerController {
+class TrainerController {
 
     private final TrainerDAO trainerDAO;
     private final TrainerDetailsDAO trainerDetailsDAO;

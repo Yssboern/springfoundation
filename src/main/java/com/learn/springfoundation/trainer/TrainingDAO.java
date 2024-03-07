@@ -13,7 +13,7 @@ import java.util.Optional;
 @Component
 @Slf4j
 @AllArgsConstructor
-public class TrainingDAO {
+class TrainingDAO {
 
     private final TrainingRepo trainingRepo;
     private final EntityManager entityManager;
