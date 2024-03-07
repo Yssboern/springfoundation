@@ -17,7 +17,7 @@ import java.util.Optional;
 @Component
 @Slf4j
 @AllArgsConstructor
-public class TrainerDAO {
+class TrainerDAO {
 
     private final EntityManager em;
     private final TrainerRepo trainerRepo;
@@ -63,10 +63,10 @@ public class TrainerDAO {
     public TrainerDTO update(TrainerDTO trainer) {
         System.out.println("----------------------------------------------");
         var entity = converter.toEntity(trainer);
-        var trophies = trophyRepo.findAllById(trainer.getTrophies());
+        var trophies = trophyRepo.findAllById(trainer.trophies());
         trophies.forEach(trophy -> trophy.setTrainer(entity));
         entity.setTrophies(trophies);
-        var notes = trainer.getNotes().stream().map(n -> new TrainersNote(n.id(), n.text(), entity)).toList();
+        var notes = trainer.notes().stream().map(n -> new TrainersNote(n.id(), n.text(), entity)).toList();
         entity.setTrainersNotes(notes);
 
         var e = trainerRepo.save(entity);

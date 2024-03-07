@@ -2,13 +2,14 @@ package com.learn.springfoundation.member;
 
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.time.LocalDateTime;
-
-//memid;surname;firstname;address;zipcode;telephone;recommendedby;joindate
+@Getter
+@Setter
 @Entity
 @Table(schema = "tgn", name = "members")
-public class MemberView {
+class MemberView {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "memid", nullable = false)
@@ -16,30 +17,6 @@ public class MemberView {
 
     private String surname;
     private String firstname;
-
-    public Long getMemid() {
-        return memid;
-    }
-
-    public void setMemid(Long memid) {
-        this.memid = memid;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
 
     @Override
     public String toString() {

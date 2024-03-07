@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Service
-public class PopulateDBService {
+class PopulateDBService {
 
     private static final Logger logger = LoggerFactory.getLogger(PopulateDBService.class.getName());
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -73,7 +73,7 @@ public class PopulateDBService {
 
         Member recommendedby = null;
         if (!columns[6].isBlank()) {
-            recommendedby = membersRepo.findById(Long.valueOf(columns[6])).orElseGet(() -> null);
+            recommendedby = membersRepo.findById(Long.valueOf(columns[6])).orElse(null);
         }
         var joindate = LocalDateTime.parse(columns[7], formatter);
         return new Member(memid, surname, firstname, address, zipcode, telephone, recommendedby, joindate);
@@ -104,8 +104,8 @@ public class PopulateDBService {
     private Booking newBooking(String[] params) {
 
         var bookid = Long.valueOf(params[0]);
-        var facid = facilitiesRepo.findById(Long.parseLong(params[1]) + 1).get();
-        var memid = membersRepo.findById(Long.parseLong(params[2]) + 1).get();
+        var facid = facilitiesRepo.findById(Long.parseLong(params[1]) + 1).orElse(null);
+        var memid = membersRepo.findById(Long.parseLong(params[2]) + 1).orElse(null);
         var starttime = LocalDateTime.parse(params[3], formatter);
         var slots = Integer.valueOf(params[4]);
 

@@ -20,8 +20,8 @@ class TrophyController {
     public Page<TrophyDTO> getAllPaginated(
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "5") int size) {
-        System.out.println("http://localhost:8080/api/trophies?page=" + page);
-        var result = dao.getPaginatedTrophies(PageRequest.of(page - 1, size));
+        System.out.println("GET http://localhost:8080/api/trophies?page=" + page + "&size=" + size);
+        var result = dao.getPaginatedTrophies(PageRequest.of(page, size));
         System.out.println("----------------------------------------------");
         return result;
     }
@@ -30,8 +30,8 @@ class TrophyController {
     public Page<IdText> getAllPaginatedSelectionList(
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "5") int size) {
-        System.out.println("http://localhost:8080/api/trophies/selection?page=" + page);
-        var result = dao.getPaginatedTrophiesSelectionList(PageRequest.of(page - 1, size));
+        System.out.println("GET http://localhost:8080/api/trophies/selection?page=" + page + "&size=" + size);
+        var result = dao.getPaginatedTrophiesSelectionList(PageRequest.of(page, size));
         System.out.println("----------------------------------------------");
         return result;
     }

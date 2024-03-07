@@ -13,7 +13,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @AllArgsConstructor
-public class PersonalID {
+class PersonalID {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

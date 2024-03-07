@@ -7,7 +7,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api")
-public class AppController {
+class AppController {
 
     private final AppService appService;
 

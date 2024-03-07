@@ -23,7 +23,7 @@ class TrainerController {
     public Page<TrainerDTO> getTrainers(
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "5") int size) {
-        return trainerDAO.getPaginatedTrainers(PageRequest.of(page - 1, size));
+        return trainerDAO.getPaginatedTrainers(PageRequest.of(page, size));
     }
 
     @GetMapping("/trainers/{id}")

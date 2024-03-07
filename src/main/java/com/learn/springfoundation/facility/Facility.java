@@ -2,11 +2,16 @@ package com.learn.springfoundation.facility;
 
 import com.learn.springfoundation.trainer.Trainer;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
-//facid;name;membercost;guestcost;initialoutlay;monthlymaintenance
 @Entity
+@NoArgsConstructor
+@Setter
+@Getter
 @Table(schema = "tgn", name = "facilities")
 public class Facility {
 
@@ -37,68 +42,8 @@ public class Facility {
         this.monthlymaintenance = Integer.valueOf(columns[5]);
     }
 
-    public Facility() {
-
-    }
-
     public Facility(Long id) {
         setFacid(id);
-    }
-
-    public Long getFacid() {
-        return facid;
-    }
-
-    public void setFacid(Long facid) {
-        this.facid = facid;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Float getMembercost() {
-        return membercost;
-    }
-
-    public void setMembercost(Float membercost) {
-        this.membercost = membercost;
-    }
-
-    public Float getGuestcost() {
-        return guestcost;
-    }
-
-    public void setGuestcost(Float guestcost) {
-        this.guestcost = guestcost;
-    }
-
-    public Integer getInitialoutlay() {
-        return initialoutlay;
-    }
-
-    public void setInitialoutlay(Integer initialoutlay) {
-        this.initialoutlay = initialoutlay;
-    }
-
-    public Integer getMonthlymaintenance() {
-        return monthlymaintenance;
-    }
-
-    public void setMonthlymaintenance(Integer monthlymaintenance) {
-        this.monthlymaintenance = monthlymaintenance;
-    }
-
-    public List<Trainer> getTrainers() {
-        return trainers;
-    }
-
-    public void setTrainers(List<Trainer> trainers) {
-        this.trainers = trainers;
     }
 
     @Override

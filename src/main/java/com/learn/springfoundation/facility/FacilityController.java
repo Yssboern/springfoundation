@@ -20,7 +20,7 @@ class FacilityController {
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "5") int size) {
         System.out.println("http://localhost:8080/api/facilities?page=$" + page);
-        var result = dao.getAllPaginated(PageRequest.of(page - 1, size));
+        var result = dao.getAllPaginated(PageRequest.of(page, size));
         System.out.println("----------------------------------------------");
         return result;
     }
@@ -30,7 +30,7 @@ class FacilityController {
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "5") int size) {
         System.out.println("http://localhost:8080/api/facilities/selection?page=$" + page);
-        var result = dao.getAllPaginatedItemList(PageRequest.of(page - 1, size));
+        var result = dao.getAllPaginatedItemList(PageRequest.of(page, size));
         System.out.println("----------------------------------------------");
         return result;
     }

@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MembersViewRepo extends CrudRepository<MemberView, Long> {
+interface MembersViewRepo extends CrudRepository<MemberView, Long> {
 
 }

@@ -34,7 +34,7 @@ class TrainingController {
     public ResponseEntity<Page<TrainingDTO>> getPaginatedTrainings(@RequestParam(defaultValue = "1") int page,
                                                                    @RequestParam(defaultValue = "7") int size) {
         System.out.println("http://localhost:8080/api/trainings?page=" + page);
-        Page<TrainingDTO> trainingPage = trainingDAO.getPaginatedTrainings(PageRequest.of(page - 1, size));
+        Page<TrainingDTO> trainingPage = trainingDAO.getPaginatedTrainings(PageRequest.of(page, size));
         System.out.println("----------------------------------------------");
         return ResponseEntity.ok(trainingPage);
     }
@@ -43,7 +43,7 @@ class TrainingController {
     public ResponseEntity<Page<IdText>> getPaginatedTrainingsSelectionList(@RequestParam(defaultValue = "1") int page,
                                                                            @RequestParam(defaultValue = "7") int size) {
         System.out.println("http://localhost:8080/api/trainings/selection" + page);
-        Page<IdText> trainingPage = trainingDAO.getPaginatedTrainingsSelectionList(PageRequest.of(page - 1, size));
+        Page<IdText> trainingPage = trainingDAO.getPaginatedTrainingsSelectionList(PageRequest.of(page, size));
         System.out.println("----------------------------------------------");
         return ResponseEntity.ok(trainingPage);
     }

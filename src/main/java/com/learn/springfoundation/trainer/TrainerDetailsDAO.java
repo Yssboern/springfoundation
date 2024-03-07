@@ -19,7 +19,7 @@ class TrainerDetailsDAO {
     private final EntityManager entityManager;
     private final TrainerConverter converter;
 
-    public TrainerDetails getById(Long id) {
+    TrainerDetails getById(Long id) {
         Optional<Trainer> optionalTrainer = trainerRepo.findById(id);
         if (optionalTrainer.isPresent()) {
             Trainer entity = optionalTrainer.get();
@@ -42,7 +42,7 @@ class TrainerDetailsDAO {
         return results;
     }
 
-    public List<IdText> getTrainersNotes(Long trainerId) {
+    List<IdText> getTrainersNotes(Long trainerId) {
         String sql = "SELECT NEW com.learn.springfoundation.IdText(tn.id, tn.note) " +
                 "FROM Trainer trainer " +
                 "JOIN trainer.trainersNotes tn " +
@@ -63,7 +63,7 @@ class TrainerDetailsDAO {
         }
     }
 
-    public IdText addTrainersNote(Long trainerId, IdText note) {
+    IdText addTrainersNote(Long trainerId, IdText note) {
         var trainer = new Trainer(trainerId);
         var newNote = new TrainersNote(note.text(), trainer);
 
@@ -75,7 +75,7 @@ class TrainerDetailsDAO {
         return new IdText(r.getId(), r.getNote());
     }
 
-    public TrainerDetails addTrainersNote2(Long trainerId, IdText note) {
+    TrainerDetails addTrainersNote2(Long trainerId, IdText note) {
         var trainer = trainerRepo.findById(trainerId).orElseThrow();
         var newNote = new TrainersNote(note.text(), trainer);
         trainer.getTrainersNotes().add(newNote);
@@ -84,7 +84,7 @@ class TrainerDetailsDAO {
         return converter.toDetails(trainer);
     }
 
-    public void deleteById(Long id) {
+    void deleteById(Long id) {
         trainerRepo.deleteById(id);
     }
 

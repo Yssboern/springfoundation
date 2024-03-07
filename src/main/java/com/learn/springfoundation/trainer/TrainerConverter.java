@@ -16,25 +16,25 @@ class TrainerConverter {
     public Trainer toEntity(TrainerDTO dto) {
 
         Trainer entity = new Trainer();
-        entity.setId(dto.getId());
-        entity.setSurname(dto.getSurname());
-        entity.setFirstname(dto.getFirstname());
+        entity.setId(dto.id());
+        entity.setSurname(dto.surname());
+        entity.setFirstname(dto.firstname());
 
         List<Facility> facilities = new ArrayList<>();
-        if (dto.getFacilityIds() != null) {
-            facilities = dto.getFacilityIds().stream().map(Facility::new).toList();
+        if (dto.facilityIds() != null) {
+            facilities = dto.facilityIds().stream().map(Facility::new).toList();
         }
         entity.setFacilities(facilities);
 
         List<Training> skills = new ArrayList<>();
-        if (dto.getSpecialisations() != null) {
-            skills = dto.getSpecialisations().stream().map(Training::new).toList();
+        if (dto.specialisations() != null) {
+            skills = dto.specialisations().stream().map(Training::new).toList();
         }
         entity.setSpecialisations(skills);
 
         List<Trophy> trophies = new ArrayList<>();
-        if (dto.getTrophies() != null) {
-            trophies = dto.getTrophies().stream().map(id -> new Trophy(id, entity)).toList();
+        if (dto.trophies() != null) {
+            trophies = dto.trophies().stream().map(id -> new Trophy(id, entity)).toList();
         }
         entity.setTrophies(trophies);
         return entity;

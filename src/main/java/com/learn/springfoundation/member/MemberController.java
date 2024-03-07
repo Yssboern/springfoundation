@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
-public class MemberController {
+class MemberController {
 
     @Autowired
     private MemberDAO memberDAO;
@@ -17,7 +17,7 @@ public class MemberController {
     public Page<MemberDTO> getMembers(
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "5") int size) {
-        return memberDAO.getAllPaginated(PageRequest.of(page - 1, size));
+        return memberDAO.getAllPaginated(PageRequest.of(page, size));
     }
 
     @GetMapping("/members/{id}")

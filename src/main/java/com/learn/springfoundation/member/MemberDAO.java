@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class MemberDAO {
+class MemberDAO {
 
     private final MembersViewRepo membersViewRepo;
     private final MembersRepo membersRepo;

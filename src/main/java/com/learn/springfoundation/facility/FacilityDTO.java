@@ -2,7 +2,7 @@ package com.learn.springfoundation.facility;
 
 import java.util.List;
 
-public record FacilityDTO(
+record FacilityDTO(
         Long facid,
         String name,
         Float memberCost,

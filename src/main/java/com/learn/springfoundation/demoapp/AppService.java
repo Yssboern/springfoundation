@@ -1,7 +1,5 @@
 package com.learn.springfoundation.demoapp;
 
-import com.learn.springfoundation.demoapp.TstEntity;
-import com.learn.springfoundation.demoapp.AppRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class AppService {
+class AppService {
 
     private DataSource dataSource;
     private AppRepo appRepo;
