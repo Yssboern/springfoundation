@@ -28,55 +28,55 @@ class TrainerDetailsDAO {
         }
     }
 
-    List<IdName> getTrainingDisplayList(Long trainerId) {
-        String sql = "SELECT NEW com.learn.springfoundation.trainer.IdName(ts.id, ts.name) " +
+    List<IdText> getTrainingDisplayList(Long trainerId) {
+        String sql = "SELECT NEW com.learn.springfoundation.trainer.IdText(ts.id, ts.name) " +
                 "FROM Trainer trainer " +
                 "JOIN trainer.specialisations ts " +
                 "WHERE trainer.id = :trainerId";
 
-        List<IdName> results = entityManager.createQuery(sql, IdName.class)
+        List<IdText> results = entityManager.createQuery(sql, IdText.class)
                 .setParameter("trainerId", trainerId)
                 .getResultList();
         displayList(results);
         return results;
     }
 
-    public List<IdName> getTrainersNotes(Long trainerId) {
-        String sql = "SELECT NEW com.learn.springfoundation.trainer.IdName(tn.id, tn.note) " +
+    public List<IdText> getTrainersNotes(Long trainerId) {
+        String sql = "SELECT NEW com.learn.springfoundation.trainer.IdText(tn.id, tn.note) " +
                 "FROM Trainer trainer " +
                 "JOIN trainer.trainersNotes tn " +
                 "WHERE trainer.id = :trainerId";
 
-        List<IdName> results = entityManager.createQuery(sql, IdName.class)
+        List<IdText> results = entityManager.createQuery(sql, IdText.class)
                 .setParameter("trainerId", trainerId)
                 .getResultList();
         displayList(results);
         return results;
     }
 
-    private void displayList(List<IdName> results) {
-        for (IdName info : results) {
+    private void displayList(List<IdText> results) {
+        for (IdText info : results) {
             Long id = info.getId();
-            String text = info.getName();
+            String text = info.getText();
             System.out.println(id + " " + text);
         }
     }
 
-    public IdName addTrainersNote(Long trainerId, IdName note) {
+    public IdText addTrainersNote(Long trainerId, IdText note) {
         var trainer = new Trainer(trainerId);
-        var newNote = new TrainersNote(note.getName(), trainer);
+        var newNote = new TrainersNote(note.getText(), trainer);
 
         List<TrainersNote> notes = new ArrayList<>();
         notes.add(newNote);
         trainer.setTrainersNotes(notes);
 
         var r = trainersNotesRepo.save(newNote);
-        return new IdName(r.getId(), r.getNote());
+        return new IdText(r.getId(), r.getNote());
     }
 
-    public TrainerDetails addTrainersNote2(Long trainerId, IdName note) {
+    public TrainerDetails addTrainersNote2(Long trainerId, IdText note) {
         var trainer = trainerRepo.findById(trainerId).orElseThrow();
-        var newNote = new TrainersNote(note.getName(), trainer);
+        var newNote = new TrainersNote(note.getText(), trainer);
         trainer.getTrainersNotes().add(newNote);
 
         var r = trainerRepo.save(trainer);

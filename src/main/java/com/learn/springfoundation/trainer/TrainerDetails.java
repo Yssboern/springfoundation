@@ -6,9 +6,9 @@ record TrainerDetails(
         Long id,
         String surname,
         String firstname,
-        List<IdName> facilities,
-        List<IdName> skills,
-        List<IdName> trophies,
-        List<IdName> notes
+        List<IdText> facilities,
+        List<IdText> skills,
+        List<IdText> trophies,
+        List<IdText> notes
 ) {
 }

@@ -10,8 +10,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class IdName {
+public class IdText {
 
     private Long id;
-    private String name;
+    private String text;
 }

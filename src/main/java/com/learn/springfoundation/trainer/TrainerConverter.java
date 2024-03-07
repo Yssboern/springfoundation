@@ -62,11 +62,11 @@ public class TrainerConverter {
             trophies = entity.getTrophies().stream().map(Trophy::getId).toList();
         }
 
-        List<IdName> notes;
+        List<IdText> notes;
         if (entity.getTrainersNotes() == null) {
             notes = Collections.emptyList();
         } else {
-            notes = entity.getTrainersNotes().stream().map(n -> new IdName(n.getId(), n.getNote())).toList();
+            notes = entity.getTrainersNotes().stream().map(n -> new IdText(n.getId(), n.getNote())).toList();
         }
 
         return new TrainerDTO(
@@ -86,16 +86,16 @@ public class TrainerConverter {
                 entity.getSurname(),
                 entity.getFirstname(),
                 entity.getFacilities().stream()
-                        .map(facility -> new IdName(facility.getFacid(), facility.getName()))
+                        .map(facility -> new IdText(facility.getFacid(), facility.getName()))
                         .collect(Collectors.toList()),
                 entity.getSpecialisations().stream()
-                        .map(skill -> new IdName(skill.getId(), skill.getName()))
+                        .map(skill -> new IdText(skill.getId(), skill.getName()))
                         .collect(Collectors.toList()),
                 entity.getTrophies().stream()
-                        .map(trophy -> new IdName(trophy.getId(), trophy.getName()))
+                        .map(trophy -> new IdText(trophy.getId(), trophy.getName()))
                         .collect(Collectors.toList()),
                 entity.getTrainersNotes().stream()
-                        .map(note -> new IdName(note.getId(), note.getNote()))
+                        .map(note -> new IdText(note.getId(), note.getNote()))
                         .collect(Collectors.toList())
         );
     }

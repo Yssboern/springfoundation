@@ -1,6 +1,5 @@
 package com.learn.springfoundation.trainer;
 
-import com.learn.springfoundation.trophy.Trophy;
 import com.learn.springfoundation.trophy.TrophyRepo;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
@@ -67,7 +66,7 @@ public class TrainerDAO {
         var trophies = trophyRepo.findAllById(trainer.getTrophies());
         trophies.forEach(trophy -> trophy.setTrainer(entity));
         entity.setTrophies(trophies);
-        var notes = trainer.getNotes().stream().map(n -> new TrainersNote(n.getId(), n.getName(), entity)).toList();
+        var notes = trainer.getNotes().stream().map(n -> new TrainersNote(n.getId(), n.getText(), entity)).toList();
         entity.setTrainersNotes(notes);
 
         var e = trainerRepo.save(entity);

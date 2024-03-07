@@ -18,7 +18,7 @@ class TrainerDTO {
     private List<Long> facilityIds;
     private List<Long> specialisations;
     private List<Long> trophies;
-    private List<IdName> notes;
+    private List<IdText> notes;
 
     public TrainerDTO(Long id, String surname, String firstname) {
         this.id = id;
