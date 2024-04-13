@@ -8,7 +8,7 @@ import static jakarta.persistence.FetchType.LAZY;
 
 //memid;surname;firstname;address;zipcode;telephone;recommendedby;joindate
 @Entity
-@Table(schema = "tgn", name = "members")
+@Table(schema = "TGN", name = "MEMBERS")
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,7 +22,6 @@ public class Member {
     private String telephone;
     private LocalDateTime joindate;
     @ManyToOne(fetch = LAZY)
-    @Column(name = "recommendedby")
     private Member recommendedby;
 
     public Member(Long memid, String surname, String firstname, String address, String zipcode, String telephone, Member recommendedby, LocalDateTime joindate) {

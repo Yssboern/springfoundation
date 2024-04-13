@@ -24,10 +24,8 @@ public class Booking {
     @Column(name = "bookid", nullable = false)
     private Long bookid;
     @ManyToOne
-    @Column(name = "facid")
     private Facility facid;
     @ManyToOne
-    @Column(name = "memid")
     private Member memid;
     private LocalDateTime starttime;
     private Integer slots;
