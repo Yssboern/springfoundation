@@ -27,6 +27,7 @@ public class Trophy {
     private Trainer trainer;
 
     @ManyToOne
+    @JoinColumn(name = "DISCIPLINE_ID")
     private Training discipline;
 
     public Trophy(Long id, Trainer entity) {

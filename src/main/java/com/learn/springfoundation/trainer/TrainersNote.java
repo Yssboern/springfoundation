@@ -22,6 +22,7 @@ class TrainersNote {
     private String note;
 
     @ManyToOne
+    @Column(name = "TRAINER_ID")
     private Trainer trainer;
 
     public TrainersNote(String note, Trainer trainer) {

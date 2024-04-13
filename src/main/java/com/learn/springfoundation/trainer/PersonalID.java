@@ -1,7 +1,5 @@
 package com.learn.springfoundation.trainer;
 
-
-import com.learn.springfoundation.trainer.Trainer;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,6 +8,7 @@ import lombok.Setter;
 import java.util.UUID;
 
 @Entity
+@Table(schema = "TGN", name = "PERSONALIDS")
 @Getter
 @Setter
 @AllArgsConstructor
