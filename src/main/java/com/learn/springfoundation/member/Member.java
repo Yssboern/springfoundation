@@ -22,6 +22,7 @@ public class Member {
     private String telephone;
     private LocalDateTime joindate;
     @ManyToOne(fetch = LAZY)
+    @Column(name = "recommendedby")
     private Member recommendedby;
 
     public Member(Long memid, String surname, String firstname, String address, String zipcode, String telephone, Member recommendedby, LocalDateTime joindate) {
